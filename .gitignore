@@ -3,3 +3,4 @@ old-design/
 static/img/*.png
 gen.log
 .netlify/
+__pycache__/

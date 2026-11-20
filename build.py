@@ -22,6 +22,8 @@ from pathlib import Path
 
 import markdown
 
+from icons import icon, replace_in_html, EMOJI_RE
+
 ROOT = Path(__file__).parent
 POSTS = ROOT / "posts"
 STATIC = ROOT / "static"
@@ -84,13 +86,13 @@ def inline(t):
 def render_block(kind, lines):
     lines = [l.strip().lstrip("-* ").strip() for l in lines if l.strip()]
     if kind == "cards":
-        items = "".join(f'<li><span class="ic">{E(a)}</span><b>{inline(b)}</b><span>{inline(c)}</span></li>' for a, b, c in (fields(l, 3) for l in lines))
+        items = "".join(f'<li><span class="ic">{icon(a)}</span><b>{inline(b)}</b><span>{inline(c)}</span></li>' for a, b, c in (fields(l, 3) for l in lines))
         return f'<ul class="v-cards">{items}</ul>'
     if kind == "steps":
-        items = "".join(f'<li><span class="n">{i}</span><span class="ic">{E(a)}</span><b>{inline(b)}</b></li>' for i, (a, b) in enumerate((fields(l, 2) for l in lines), 1))
+        items = "".join(f'<li><span class="n">{i}</span><span class="ic">{icon(a)}</span><b>{inline(b)}</b></li>' for i, (a, b) in enumerate((fields(l, 2) for l in lines), 1))
         return f'<ol class="v-steps">{items}</ol>'
     if kind == "stats":
-        items = "".join(f'<li><b>{E(a)}</b><span>{inline(b)}</span></li>' for a, b in (fields(l, 2) for l in lines))
+        items = "".join(f'<li><b>{icon(a, "ico-stat") if not EMOJI_RE.sub("", a).strip() else E(a)}</b><span>{inline(b)}</span></li>' for a, b in (fields(l, 2) for l in lines))
         return f'<ul class="v-stats">{items}</ul>'
     if kind == "vs":
         head, rows = fields(lines[0], 2), [fields(l, 2) for l in lines[1:]]
@@ -153,8 +155,12 @@ def parse(path):
 
 
 def page(title, desc, body, depth=0, canonical=""):
+    return replace_in_html(_page(title, desc, body, depth, canonical))
+
+
+def _page(title, desc, body, depth=0, canonical=""):
     p = "../" * depth
-    nav = "".join(f'<a href="{p}index.html#{c["slug"]}">{c["icon"]} {c["short"]}</a>' for c in CATS.values())
+    nav = "".join(f'<a href="{p}index.html#{c["slug"]}">{c["short"]}</a>' for c in CATS.values())
     return f'''<!doctype html>
 <html lang="fil">
 <head>
@@ -173,7 +179,7 @@ def page(title, desc, body, depth=0, canonical=""):
 </head>
 <body>
 <header class="top"><a class="brand" href="{p}index.html">VA <span>Pinoy</span> Life</a>
-<nav>{nav}<a href="{p}resume-template.html">📄 Free resume</a><a href="{p}about.html">👋 About</a></nav></header>
+<nav>{nav}<a href="{p}resume-template.html">Free resume</a><a href="{p}about.html">About</a></nav></header>
 {body}
 <footer class="foot"><a class="brand" href="{p}index.html">VA <span>Pinoy</span> Life</a>
 <p class="small">Gawa ng Pinoy EA · Ang ilang links ay affiliate · Hindi financial o tax advice</p></footer>
@@ -185,7 +191,7 @@ def tile(p, depth=0, big=False):
     """Text card: anime art lives only in the hero at the top of each page."""
     c = CATS[p["category"]]
     return f'''<a class="card-link" href="{'../'*depth}posts/{p['slug']}.html" style="--cat:{c['dot'] if c['bg'] == '#F1F0F7' else c['bg']}">
-<span class="icon">{p['icon']}</span><h3>{E(p['title'])}</h3><span class="meta">{p['category']} · {p['mins']} min</span></a>'''
+<span class="icon">{icon(p['icon'])}</span><h3>{E(p['title'])}</h3><span class="meta">{p['category']} · {p['mins']} min</span></a>'''
 
 
 def build():
@@ -224,7 +230,7 @@ def build():
     sections = ""
     for name, c in CATS.items():
         items = [p for p in posts if p["category"] == name]
-        sections += f'''<section class="cat" id="{c['slug']}"><h2><span class="ic">{c['icon']}</span>{name}</h2>
+        sections += f'''<section class="cat" id="{c['slug']}"><h2><span class="ic">{icon(c['icon'])}</span>{name}</h2>
 <div class="tiles">{''.join(tile(p) for p in items)}</div></section>'''
     body = f'''<main>
 <section class="mast"><div class="mast-text"><h1>Maging VA na may <em>totoong</em> kita.</h1>
