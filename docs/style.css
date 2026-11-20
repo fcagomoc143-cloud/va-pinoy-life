@@ -130,3 +130,11 @@ main{padding:0 clamp(20px,5vw,64px)}
   .pn{grid-template-columns:1fr}.pn a.r{justify-content:flex-start;text-align:left}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* about: long-form reading page */
+.about{max-width:720px}
+.about-head{padding:clamp(32px,6vw,72px) 0 24px;border-bottom:4px solid var(--sun);margin-bottom:8px}
+.about-head h1{font:800 clamp(2.4rem,6vw,4.6rem)/1 var(--display);letter-spacing:-0.045em;color:var(--ink);margin:0 0 16px}
+.about-body{max-width:65ch;margin:0;padding-bottom:64px}
+.about-body p{font-size:var(--text-body);line-height:1.75;margin:0 0 18px}
+.about-body h2{margin:44px 0 12px}
+.about-body .sign{font:800 var(--text-heading)/1.2 var(--display);color:var(--red);margin-top:32px}

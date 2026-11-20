@@ -208,11 +208,23 @@ def build():
     (OUT / "index.html").write_text(page(f"{SITE} | Gabay para sa Pinoy Virtual Assistant",
         "Taglish na gabay para maging Virtual Assistant: paano magsimula, tools, rate, bayad at tax.", body), encoding="utf-8")
 
-    about = '''<main class="post"><section class="post-hero" style="--hbg:#0F2A6B;--hfg:#fff"><figure>''' + art("Pang-beginner", "👋", 2, "About") + '''</figure>
-<div><h1>Hi, Pinoy EA ako 🇵🇭</h1></div></section><article class="prose">
-<ul class="v-stats"><li><b>🇨🇦</b><span>Remote EA ng isang CEO sa Canada</span></li><li><b>📬</b><span>Inbox, calendar, travel, projects</span></li><li><b>🎯</b><span>Para hindi ka na mag-trial and error</span></li></ul>
-<ul class="v-cards"><li><span class="ic">🌱</span><b>Paano magsimula</b><span>Step-by-step</span></li><li><span class="ic">🧰</span><b>Mga totoong tools</b><span>Gamit ko araw-araw</span></li><li><span class="ic">💸</span><b>Rate, bayad, tax</b><span>Walang paligoy-ligoy</span></li></ul>
-<p class="v-tip">🔗 May affiliate links ang ilang posts. Walang dagdag na bayad sa'yo. Hindi ito financial o tax advice.</p></article></main>'''
+    about = '''<main class="post about">
+<header class="about-head"><h1>Tungkol sa VA Pinoy Life</h1>
+<p class="dek">Isinulat ng isang Pinoy Executive Assistant na remote na nagtatrabaho para sa isang CEO sa Canada.</p></header>
+<article class="prose about-body">
+<p>Hi! Ako ang nasa likod ng VA Pinoy Life. Araw-araw, mula dito sa Pilipinas, hawak ko ang inbox, calendar, travel at mga project ng isang busy na CEO sa Canada. Gising ako habang tulog ang karamihan, at ang trabaho ko ay siguraduhing maayos ang araw ng boss ko bago pa siya magising.</p>
+<p>Pero hindi ako nagsimula dito. Gaya ng marami sa inyo, nagsimula ako nang walang malinaw na direksyon. Hindi ko alam kung saan maghahanap ng legit na trabaho, magkano ang dapat kong singilin, o paano makipag-usap sa client na iba ang kultura at time zone. Maraming trial and error. May mga job post na scam pala. May mga buwan na kulang ang kita. At madalas, wala akong mapagtanungan.</p>
+<h2>Bakit ko ginawa ang blog na ito</h2>
+<p>Ginawa ko ang VA Pinoy Life para hindi mo na pagdaanan ang lahat ng iyon. Ang gusto ko, may isang lugar na diretso, totoo at nasa wikang madaling intindihin, kung saan makikita mo ang buong daan: mula sa pagiging beginner, hanggang sa pagkakaroon ng long-term client na nagtitiwala sa'yo.</p>
+<p>Lahat ng nandito ay galing sa totoong trabaho. Ang mga tools na binabanggit ko, ginagamit ko talaga araw-araw. Ang mga tips tungkol sa calendar, email at travel booking, natutunan ko sa paggawa mismo, minsan sa pagkakamali.</p>
+<h2>Ano ang makikita mo dito</h2>
+<p><strong>Pang-beginner</strong> na gabay kung paano magsimula, gumawa ng resume at pumasa sa interview. <strong>Tools at skills</strong> na hinahanap ng mga client abroad. At <strong>pera at career</strong>: rate, paraan ng pagtanggap ng bayad, tax, at paano lumago mula part-time hanggang full-time.</p>
+<p>May libreng <a href="resume-template.html">VA resume template</a> din na pwede mong i-edit at i-save bilang PDF.</p>
+<h2>Isang paalala</h2>
+<p>Ang ilang links sa blog na ito ay affiliate links. Kapag bumili ka gamit ang mga ito, maaaring kumita ako ng maliit na komisyon nang walang dagdag na bayad sa'yo. Inirerekomenda ko lang ang mga bagay na ginagamit ko o pinagkakatiwalaan ko. Hindi ito financial o tax advice, kaya kumonsulta sa BIR o sa isang accountant para sa sarili mong sitwasyon.</p>
+<p>Salamat sa pagbisita. Kung nandito ka dahil gusto mong magbago ang buhay mo sa pamamagitan ng remote work, nasa tamang lugar ka. Kaya mo 'yan.</p>
+<p class="sign">Ang iyong kapwa Pinoy EA</p>
+</article></main>'''
     (OUT / "about.html").write_text(page(f"About | {SITE}", "Tungkol sa VA Pinoy Life.", about, 0, "about.html"), encoding="utf-8")
 
     urls = ["", "about.html", "resume-template.html"] + [f"posts/{p['slug']}.html" for p in posts]
