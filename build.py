@@ -185,7 +185,7 @@ def tile(p, depth=0, big=False):
     """Text card: anime art lives only in the hero at the top of each page."""
     c = CATS[p["category"]]
     return f'''<a class="card-link" href="{'../'*depth}posts/{p['slug']}.html" style="--cat:{c['dot'] if c['bg'] == '#F1F0F7' else c['bg']}">
-<span class="num">{p['order']:02d}</span><h3>{E(p['title'])}</h3><span class="meta">{p['category']} · {p['mins']} min</span></a>'''
+<span class="icon">{p['icon']}</span><h3>{E(p['title'])}</h3><span class="meta">{p['category']} · {p['mins']} min</span></a>'''
 
 
 def build():
@@ -228,7 +228,7 @@ def build():
 <div class="tiles">{''.join(tile(p) for p in items)}</div></section>'''
     body = f'''<main>
 <section class="mast"><div class="mast-text"><h1>Maging VA na may <em>totoong</em> kita.</h1>
-<ol class="v-steps home"><li><span class="n">1</span><b>Matuto</b></li><li><span class="n">2</span><b>Mag-skill up</b></li><li><span class="n">3</span><b>Mag-apply</b></li><li><span class="n">4</span><b>Kumita</b></li></ol></div>{('<figure class="mast-art">' + pic('home', 0, 'Pinoy VA na nagtatrabaho sa gabi', eager=True) + '</figure>') if pic('home') else ''}</section>
+<ul class="v-steps home"><li><span class="ic">🌱</span><b>Matuto</b></li><li><span class="ic">🧰</span><b>Mag-skill up</b></li><li><span class="ic">📄</span><b>Mag-apply</b></li><li><span class="ic">💸</span><b>Kumita</b></li></ul></div>{('<figure class="mast-art">' + pic('home', 0, 'Pinoy VA na nagtatrabaho sa gabi', eager=True) + '</figure>') if pic('home') else ''}</section>
 {sections}
 <section class="freebie"><span class="big">📄</span><div><h2>Libreng VA resume template</h2><a class="btn" href="resume-template.html">Buksan</a></div></section>
 </main>'''
