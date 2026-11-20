@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fcagomoc143-cloud.github.io/va-pinoy-life/sitemap.xml

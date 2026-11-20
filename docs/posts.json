@@ -1,0 +1,62 @@
+[
+ {
+  "title": "Ano ba Talaga ang Virtual Assistant? Explained Para sa mga Bago",
+  "slug": "ano-ang-virtual-assistant",
+  "category": "Pang-beginner",
+  "order": 1
+ },
+ {
+  "title": "Paano Maging VA Kahit Walang Experience? Oo, Kaya Mo Yan",
+  "slug": "paano-maging-va-kahit-walang-experience",
+  "category": "Pang-beginner",
+  "order": 2
+ },
+ {
+  "title": "VA vs EA: Ano ang Pagkakaiba at Alin ang Para sa'yo?",
+  "slug": "va-vs-ea-pagkakaiba",
+  "category": "Pang-beginner",
+  "order": 3
+ },
+ {
+  "title": "Mga Kailangang Equipment at Internet Setup ng Isang VA",
+  "slug": "va-equipment-at-internet-setup",
+  "category": "Pang-beginner",
+  "order": 4
+ },
+ {
+  "title": "Saan Maghahanap ng VA Job? Mga Legit Sites na Subok Na",
+  "slug": "saan-maghahanap-ng-va-job",
+  "category": "Pang-beginner",
+  "order": 5
+ },
+ {
+  "title": "Ang Toolkit Ko Araw-Araw Bilang EA ng CEO sa Canada",
+  "slug": "mga-tools-na-ginagamit-ko-araw-araw-bilang-ea",
+  "category": "Tools at skills",
+  "order": 11
+ },
+ {
+  "title": "Google Workspace Basics na Dapat Alam ng Bawat VA",
+  "slug": "google-workspace-basics-para-sa-va",
+  "category": "Tools at skills",
+  "order": 12
+ },
+ {
+  "title": "Outlook Tips at Tricks na Nakakatipid ng Oras Mo Araw-Araw",
+  "slug": "outlook-tips-at-tricks-na-nakakatipid-ng-oras",
+  "category": "Tools at skills",
+  "order": 13
+ },
+ {
+  "title": "Calendar Management Para sa Busy na Boss, Paano Hindi Malulunod",
+  "slug": "calendar-management-para-sa-busy-na-boss",
+  "category": "Tools at skills",
+  "order": 14
+ },
+ {
+  "title": "Inbox Zero Method Para sa VA, Paano Ko Nililinis ang 200 Emails Araw-Araw",
+  "slug": "inbox-zero-method-para-sa-va",
+  "category": "Tools at skills",
+  "order": 15
+ }
+]
