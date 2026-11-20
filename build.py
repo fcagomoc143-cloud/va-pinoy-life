@@ -182,8 +182,10 @@ def page(title, desc, body, depth=0, canonical=""):
 
 
 def tile(p, depth=0, big=False):
-    return f'''<a class="{'lead' if big else 'tile'}" href="{'../'*depth}posts/{p['slug']}.html">
-<figure>{pic(p['slug'], depth, p['title'], eager=big) or art(p['category'], p['icon'], p['order'], p['title'])}</figure><h3>{E(p['title'])}</h3></a>'''
+    """Text card: anime art lives only in the hero at the top of each page."""
+    c = CATS[p["category"]]
+    return f'''<a class="card-link" href="{'../'*depth}posts/{p['slug']}.html" style="--cat:{c['dot'] if c['bg'] == '#F1F0F7' else c['bg']}">
+<span class="num">{p['order']:02d}</span><h3>{E(p['title'])}</h3><span class="meta">{p['category']} · {p['mins']} min</span></a>'''
 
 
 def build():
@@ -227,7 +229,6 @@ def build():
     body = f'''<main>
 <section class="mast"><div class="mast-text"><h1>Maging VA na may <em>totoong</em> kita.</h1>
 <ol class="v-steps home"><li><span class="n">1</span><b>Matuto</b></li><li><span class="n">2</span><b>Mag-skill up</b></li><li><span class="n">3</span><b>Mag-apply</b></li><li><span class="n">4</span><b>Kumita</b></li></ol></div>{('<figure class="mast-art">' + pic('home', 0, 'Pinoy VA na nagtatrabaho sa gabi', eager=True) + '</figure>') if pic('home') else ''}</section>
-<section class="hero-post">{tile(posts[0], big=True)}</section>
 {sections}
 <section class="freebie"><span class="big">📄</span><div><h2>Libreng VA resume template</h2><a class="btn" href="resume-template.html">Buksan</a></div></section>
 </main>'''
