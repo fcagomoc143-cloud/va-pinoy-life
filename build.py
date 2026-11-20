@@ -1,10 +1,23 @@
-"""VA Pinoy Life static blog builder.
-Usage: python build.py   -> writes ./docs (GitHub Pages folder)
+"""VA Pinoy Life static blog builder (80/20 visual format).
+
+python build.py          -> build ./docs
+python build.py --check  -> per-post 80/20 report (prose words, visual blocks)
+
+Visual blocks inside posts (each line inside a block = one item, fields split by " | "):
+  :::cards    emoji | title | short line            -> icon card grid
+  :::steps    emoji | step title                    -> step flow with arrows
+  :::stats    big value | label                     -> big number tiles
+  :::vs       left title | right title  (1st line), then left | right per row
+  :::check    item                                  -> checklist tiles
+  :::tip      emoji one-liner                       -> highlight callout
+  :::bars     label | 0-100 | value text            -> bar chart
+Plain markdown tables are also allowed.
 """
 import html
 import json
 import re
 import shutil
+import sys
 from pathlib import Path
 
 import markdown
@@ -15,32 +28,67 @@ STATIC = ROOT / "static"
 OUT = ROOT / "docs"
 SITE = "VA Pinoy Life"
 BASE_URL = "https://fcagomoc143-cloud.github.io/va-pinoy-life"
+MAX_PROSE = 220
+MIN_BLOCKS = 5
 
 CATS = {
-    "Pang-beginner": {"slug": "beginner", "blurb": "Magsimula dito kung bago ka sa VA work.", "art": "start"},
-    "Tools at skills": {"slug": "tools", "blurb": "Mga app at skills na hinahanap ng clients.", "art": "tools"},
-    "Pera at career": {"slug": "pera", "blurb": "Rate, bayad, tax at paglago ng career.", "art": "money"},
+    "Pang-beginner": {"slug": "beginner", "short": "Simula", "icon": "🌱", "bg": "#0F2A6B", "fg": "#FFFFFF", "blob": "#1E4BB8", "dot": "#FFC93C"},
+    "Tools at skills": {"slug": "tools", "short": "Tools", "icon": "🧰", "bg": "#FFC93C", "fg": "#0F2A6B", "blob": "#FFB000", "dot": "#D7263D"},
+    "Pera at career": {"slug": "pera", "short": "Pera", "icon": "💸", "bg": "#D7263D", "fg": "#FFFFFF", "blob": "#B81D31", "dot": "#FFC93C"},
 }
+E = html.escape
 
 
-def art(kind, seed=0):
-    """Bespoke inline SVG per category; seed shifts shapes so each post differs."""
-    s = seed % 7
-    if kind == "start":
-        return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><rect width="320" height="200" fill="#0F2A6B"/>
-<circle cx="{230 - s*6}" cy="70" r="{38 + s*2}" fill="#FFC93C"/>
-<path d="M0 160 Q80 {110 + s*4} 160 150 T320 140 V200 H0Z" fill="#1E4BB8"/>
-<rect x="{48 + s*4}" y="96" width="92" height="60" rx="6" fill="#F5F7FB"/><rect x="58" y="106" width="72" height="38" rx="3" fill="#0F2A6B"/>
-<rect x="34" y="156" width="120" height="8" rx="4" fill="#F5F7FB"/></svg>'''
-    if kind == "tools":
-        return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><rect width="320" height="200" fill="#FFC93C"/>
-<rect x="{30 + s*5}" y="34" width="120" height="132" rx="10" fill="#0F2A6B"/>
-<rect x="46" y="54" width="{70 + s*3}" height="10" rx="5" fill="#FFC93C"/><rect x="46" y="76" width="88" height="10" rx="5" fill="#F5F7FB"/><rect x="46" y="98" width="60" height="10" rx="5" fill="#F5F7FB"/>
-<circle cx="{232 - s*4}" cy="100" r="54" fill="#D7263D"/><path d="M{208 - s*4} 100 l16 16 l30 -34" stroke="#F5F7FB" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'''
-    return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><rect width="320" height="200" fill="#D7263D"/>
-<rect x="40" y="{120 - s*3}" width="40" height="{60 + s*3}" fill="#FFC93C"/><rect x="100" y="{90 - s*3}" width="40" height="{90 + s*3}" fill="#FFC93C"/><rect x="160" y="{60 - s*3}" width="40" height="{120 + s*3}" fill="#FFC93C"/>
-<circle cx="258" cy="{70 + s*4}" r="34" fill="#F5F7FB"/><text x="258" y="{82 + s*4}" font-size="34" font-weight="800" text-anchor="middle" fill="#0F2A6B" font-family="Bricolage Grotesque, sans-serif">₱</text>
-<rect x="24" y="180" width="272" height="6" fill="#0F2A6B"/></svg>'''
+def art(cat, icon, seed=0, label=""):
+    """Big-emoji poster tile, shapes shift by seed so every post looks different."""
+    c = CATS[cat]
+    s = seed % 6
+    cx, cy, r = 70 + s * 36, 40 + (s % 3) * 50, 70 + s * 6
+    return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{E(label)}">
+<rect width="320" height="200" fill="{c['bg']}"/><circle cx="{cx}" cy="{cy}" r="{r}" fill="{c['blob']}"/>
+<circle cx="{292 - s*6}" cy="{174 - s}" r="{14 + s*2}" fill="{c['dot']}"/><rect x="{18 + s*8}" y="168" width="{60 + s*10}" height="10" rx="5" fill="{c['dot']}" opacity=".9"/>
+<text x="160" y="128" font-size="92" text-anchor="middle">{icon}</text></svg>'''
+
+
+def fields(line, n):
+    parts = [p.strip() for p in line.split("|")]
+    return (parts + [""] * n)[:n]
+
+
+def inline(t):
+    return markdown.markdown(t).removeprefix("<p>").removesuffix("</p>")
+
+
+def render_block(kind, lines):
+    lines = [l.strip().lstrip("-* ").strip() for l in lines if l.strip()]
+    if kind == "cards":
+        items = "".join(f'<li><span class="ic">{E(a)}</span><b>{inline(b)}</b><span>{inline(c)}</span></li>' for a, b, c in (fields(l, 3) for l in lines))
+        return f'<ul class="v-cards">{items}</ul>'
+    if kind == "steps":
+        items = "".join(f'<li><span class="n">{i}</span><span class="ic">{E(a)}</span><b>{inline(b)}</b></li>' for i, (a, b) in enumerate((fields(l, 2) for l in lines), 1))
+        return f'<ol class="v-steps">{items}</ol>'
+    if kind == "stats":
+        items = "".join(f'<li><b>{E(a)}</b><span>{inline(b)}</span></li>' for a, b in (fields(l, 2) for l in lines))
+        return f'<ul class="v-stats">{items}</ul>'
+    if kind == "vs":
+        head, rows = fields(lines[0], 2), [fields(l, 2) for l in lines[1:]]
+        col = lambda i: "".join(f"<li>{inline(r[i])}</li>" for r in rows if r[i])
+        return f'<div class="v-vs"><div><h4>{inline(head[0])}</h4><ul>{col(0)}</ul></div><span class="vs">vs</span><div><h4>{inline(head[1])}</h4><ul>{col(1)}</ul></div></div>'
+    if kind == "check":
+        items = "".join(f"<li>{inline(l)}</li>" for l in lines)
+        return f'<ul class="v-check">{items}</ul>'
+    if kind == "tip":
+        return f'<p class="v-tip">{inline(" ".join(lines))}</p>'
+    if kind == "bars":
+        items = ""
+        for a, b, c in (fields(l, 3) for l in lines):
+            pct = max(4, min(100, int(re.sub(r"\D", "", b) or 50)))
+            items += f'<li><span>{inline(a)}</span><i style="--w:{pct}%"></i><b>{inline(c)}</b></li>'
+        return f'<ul class="v-bars">{items}</ul>'
+    return "\n".join(lines)
+
+
+BLOCK_RE = re.compile(r"^:::(\w+)[ \t]*\n(.*?)^:::[ \t]*$", re.M | re.S)
 
 
 def parse(path):
@@ -55,29 +103,45 @@ def parse(path):
             meta[k.strip()] = v.strip().strip('"').strip("'")
     meta["slug"] = meta.get("slug") or path.stem
     meta["order"] = int(re.sub(r"\D", "", meta.get("order", "99")) or 99)
-    body = m.group(2)
-    # drop a leading H1 duplicate of the title
-    body = re.sub(r"^\s*#\s+.*\n", "", body, count=1) if body.lstrip().startswith("# ") else body
-    body = re.sub(r"^(\s*)[-*] \[[ xX]\] ", r"\1- ☐ ", body, flags=re.M)
-    meta["html"] = markdown.markdown(body, extensions=["tables", "sane_lists"])
-    words = len(re.findall(r"\w+", body))
-    meta["mins"] = max(2, round(words / 200))
     if meta.get("category") not in CATS:
         meta["category"] = "Pang-beginner"
+    meta["icon"] = meta.get("icon") or CATS[meta["category"]]["icon"]
+    body = m.group(2)
+    if body.lstrip().startswith("# "):
+        body = re.sub(r"^\s*#\s+.*\n", "", body, count=1)
+    body = re.sub(r"^(\s*)[-*] \[[ xX]\] ", r"\1- ", body, flags=re.M)
+
+    blocks = []
+
+    def sub(mm):
+        blocks.append(render_block(mm.group(1).lower(), mm.group(2).splitlines()))
+        return f"\n\nBLOCKTOKEN{len(blocks) - 1}\n\n"
+
+    rest = BLOCK_RE.sub(sub, body)
+    tables = len(re.findall(r"^\|[ :-]+\|", rest, re.M))
+    prose = "\n".join(l for l in rest.splitlines() if not l.lstrip().startswith("|") and "BLOCKTOKEN" not in l)
+    meta["prose_words"] = len(re.findall(r"\w+", prose))
+    meta["blocks"] = len(blocks) + tables
+    out = markdown.markdown(rest, extensions=["tables", "sane_lists"])
+    for i, b in enumerate(blocks):
+        out = out.replace(f"<p>BLOCKTOKEN{i}</p>", b)
+    meta["html"] = out
+    meta["mins"] = max(1, round((meta["prose_words"] + 15 * meta["blocks"]) / 200))
     return meta
 
 
 def page(title, desc, body, depth=0, canonical=""):
     p = "../" * depth
+    nav = "".join(f'<a href="{p}index.html#{c["slug"]}">{c["icon"]} {c["short"]}</a>' for c in CATS.values())
     return f'''<!doctype html>
 <html lang="fil">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)}</title>
-<meta name="description" content="{html.escape(desc)}">
-<meta property="og:title" content="{html.escape(title)}">
-<meta property="og:description" content="{html.escape(desc)}">
+<title>{E(title)}</title>
+<meta name="description" content="{E(desc)}">
+<meta property="og:title" content="{E(title)}">
+<meta property="og:description" content="{E(desc)}">
 <link rel="canonical" href="{BASE_URL}/{canonical}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,97 +151,93 @@ def page(title, desc, body, depth=0, canonical=""):
 </head>
 <body>
 <header class="top"><a class="brand" href="{p}index.html">VA <span>Pinoy</span> Life</a>
-<nav><a href="{p}index.html#beginner">Simula</a><a href="{p}index.html#tools">Tools</a><a href="{p}index.html#pera">Pera</a><a href="{p}resume-template.html">Free resume</a><a href="{p}about.html">About</a></nav></header>
+<nav>{nav}<a href="{p}resume-template.html">📄 Free resume</a><a href="{p}about.html">👋 About</a></nav></header>
 {body}
-<footer class="foot"><div><a class="brand" href="{p}index.html">VA <span>Pinoy</span> Life</a><p>Totoong tips para sa Pinoy VA, galing sa isang EA na nagtatrabaho para sa CEO sa Canada.</p></div>
-<p class="small">Ang ilang links ay maaaring affiliate links. Walang dagdag na bayad sa'yo. Hindi ito financial o tax advice.</p></footer>
-<script>
-const h=document.querySelector('.top');addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>8),{{passive:true}});
-</script>
+<footer class="foot"><a class="brand" href="{p}index.html">VA <span>Pinoy</span> Life</a>
+<p class="small">🇵🇭 Gawa ng Pinoy EA · Ang ilang links ay affiliate · Hindi financial o tax advice</p></footer>
+<script>const h=document.querySelector('.top');addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>8),{{passive:true}});</script>
 </body></html>'''
 
 
-def card(p, depth=0, big=False):
-    c = CATS[p["category"]]
-    cls = "lead" if big else "item"
-    return f'''<a class="{cls}" href="{'../'*depth}posts/{p['slug']}.html">
-<figure>{art(c['art'], p['order'])}</figure>
-<div><h3>{html.escape(p['title'])}</h3><p>{html.escape(p.get('description',''))}</p><p class="small">{p['category']} · {p['mins']} min basa</p></div></a>'''
+def tile(p, depth=0, big=False):
+    return f'''<a class="{'lead' if big else 'tile'}" href="{'../'*depth}posts/{p['slug']}.html">
+<figure>{art(p['category'], p['icon'], p['order'], p['title'])}</figure><h3>{E(p['title'])}</h3></a>'''
 
 
 def build():
     OUT.mkdir(exist_ok=True)
-    for f in OUT.iterdir():  # clear contents, keep folder (a dev server may hold it)
+    for f in OUT.iterdir():
         shutil.rmtree(f) if f.is_dir() else f.unlink()
     (OUT / "posts").mkdir(parents=True)
     for f in STATIC.iterdir():
         shutil.copy(f, OUT / f.name)
     posts = sorted((parse(f) for f in POSTS.glob("*.md")), key=lambda x: x["order"])
-    if not posts:
-        raise SystemExit("no posts")
 
-    # post pages
     for i, p in enumerate(posts):
+        c = CATS[p["category"]]
         prev_p = posts[i - 1] if i > 0 else None
         next_p = posts[i + 1] if i + 1 < len(posts) else None
-        c = CATS[p["category"]]
-        nav = '<nav class="pn">'
-        if prev_p:
-            nav += f'<a href="{prev_p["slug"]}.html"><span class="small">Nakaraan</span>{html.escape(prev_p["title"])}</a>'
-        else:
-            nav += "<span></span>"
-        if next_p:
-            nav += f'<a class="r" href="{next_p["slug"]}.html"><span class="small">Susunod</span>{html.escape(next_p["title"])}</a>'
-        nav += "</nav>"
+        pn = '<nav class="pn">'
+        pn += f'<a href="{prev_p["slug"]}.html"><span class="ic">⬅️</span>{E(prev_p["title"])}</a>' if prev_p else "<span></span>"
+        pn += f'<a class="r" href="{next_p["slug"]}.html">{E(next_p["title"])}<span class="ic">➡️</span></a>' if next_p else ""
+        pn += "</nav>"
+        related = [q for q in posts if q["category"] == p["category"] and q is not p][:3]
         body = f'''<main class="post">
-<div class="post-head"><p class="small"><a href="../index.html#{c['slug']}">{p['category']}</a> · {p['mins']} min basa</p>
-<h1>{html.escape(p['title'])}</h1><p class="dek">{html.escape(p.get('description',''))}</p></div>
-<figure class="post-art">{art(c['art'], p['order'])}</figure>
+<section class="post-hero" style="--hbg:{c['bg']};--hfg:{c['fg']}">
+<figure>{art(p['category'], p['icon'], p['order'], p['title'])}</figure>
+<div><p class="small"><a href="../index.html#{c['slug']}">{c['icon']} {p['category']}</a> · ⏱️ {p['mins']} min</p><h1>{E(p['title'])}</h1></div></section>
 <article class="prose">{p['html']}</article>
-<aside class="cta"><h2>Libreng VA resume template</h2><p>I-print o i-save bilang PDF. Ready na para sa Upwork at OnlineJobs.ph.</p><a class="btn" href="../resume-template.html">Kunin ang template</a></aside>
-{nav}</main>'''
+<aside class="cta"><span class="big">📄</span><div><h2>Libreng VA resume</h2><a class="btn" href="../resume-template.html">Kunin ngayon</a></div></aside>
+<section class="related"><h2>Basahin din</h2><div class="tiles">{''.join(tile(q, 1) for q in related)}</div></section>
+{pn}</main>'''
         (OUT / "posts" / f"{p['slug']}.html").write_text(
             page(f"{p['title']} | {SITE}", p.get("description", ""), body, 1, f"posts/{p['slug']}.html"), encoding="utf-8")
 
-    # index
-    lead = posts[0]
     sections = ""
     for name, c in CATS.items():
         items = [p for p in posts if p["category"] == name]
-        if not items:
-            continue
-        sections += f'''<section class="cat" id="{c['slug']}"><div class="cat-head"><h2>{name}</h2><p>{c['blurb']}</p></div>
-<div class="list">{''.join(card(p) for p in items)}</div></section>'''
+        sections += f'''<section class="cat" id="{c['slug']}"><h2><span class="ic">{c['icon']}</span>{name}</h2>
+<div class="tiles">{''.join(tile(p) for p in items)}</div></section>'''
     body = f'''<main>
 <section class="mast"><h1>Maging VA na may <em>totoong</em> kita.</h1>
-<p class="dek">Step-by-step na gabay sa Taglish para sa Pinoy na gustong magtrabaho online para sa clients abroad.</p></section>
-<section class="hero-post">{card(lead, big=True)}</section>
+<ul class="v-steps home"><li><span class="ic">🌱</span><b>Matuto</b></li><li><span class="ic">🧰</span><b>Mag-skill up</b></li><li><span class="ic">📄</span><b>Mag-apply</b></li><li><span class="ic">💸</span><b>Kumita</b></li></ul></section>
+<section class="hero-post">{tile(posts[0], big=True)}</section>
 {sections}
-<section class="freebie"><div><h2>Libreng VA resume template</h2><p>Ang format na ginagamit ko para makapasok bilang EA. Palitan lang ang laman, i-print o i-save bilang PDF.</p><a class="btn" href="resume-template.html">Buksan ang template</a></div>
-<figure>{art('tools', 3)}</figure></section>
+<section class="freebie"><span class="big">📄</span><div><h2>Libreng VA resume template</h2><a class="btn" href="resume-template.html">Buksan</a></div></section>
 </main>'''
     (OUT / "index.html").write_text(page(f"{SITE} | Gabay para sa Pinoy Virtual Assistant",
-        "Taglish na gabay para maging Virtual Assistant: paano magsimula, tools, rate, bayad at tax.", body, 0, ""), encoding="utf-8")
+        "Taglish na gabay para maging Virtual Assistant: paano magsimula, tools, rate, bayad at tax.", body), encoding="utf-8")
 
-    # about
-    about = '''<main class="post"><div class="post-head"><h1>Tungkol sa VA Pinoy Life</h1>
-<p class="dek">Isinulat ng isang Pinoy Executive Assistant na remote na nagtatrabaho para sa isang CEO sa Canada.</p></div>
-<article class="prose"><p>Nagsimula rin ako sa wala: walang experience, walang client, at hindi sigurado kung saan magsisimula. Ngayon, araw-araw kong hawak ang inbox, calendar, travel at projects ng isang busy na CEO.</p>
-<p>Ginawa ko ang blog na ito para hindi mo na pagdaanan ang trial and error na pinagdaanan ko. Lahat ng nandito ay galing sa totoong trabaho.</p>
-<h2>Ano ang makukuha mo dito</h2><ul><li>Step-by-step na gabay kung paano magsimula bilang VA</li><li>Mga tools na talagang ginagamit sa trabaho</li><li>Totoong usapan tungkol sa rate, bayad at tax</li></ul>
-<h2>Paalala</h2><p>Ang ilang links ay affiliate links. Kapag bumili ka gamit ang mga ito, maaaring kumita ako ng maliit na komisyon nang walang dagdag na bayad sa'yo. Hindi ito financial o tax advice. Kumonsulta sa BIR o accountant para sa sarili mong sitwasyon.</p></article></main>'''
+    about = '''<main class="post"><section class="post-hero" style="--hbg:#0F2A6B;--hfg:#fff"><figure>''' + art("Pang-beginner", "👋", 2, "About") + '''</figure>
+<div><h1>Hi, Pinoy EA ako 🇵🇭</h1></div></section><article class="prose">
+<ul class="v-stats"><li><b>🇨🇦</b><span>Remote EA ng isang CEO sa Canada</span></li><li><b>📬</b><span>Inbox, calendar, travel, projects</span></li><li><b>🎯</b><span>Para hindi ka na mag-trial and error</span></li></ul>
+<ul class="v-cards"><li><span class="ic">🌱</span><b>Paano magsimula</b><span>Step-by-step</span></li><li><span class="ic">🧰</span><b>Mga totoong tools</b><span>Gamit ko araw-araw</span></li><li><span class="ic">💸</span><b>Rate, bayad, tax</b><span>Walang paligoy-ligoy</span></li></ul>
+<p class="v-tip">🔗 May affiliate links ang ilang posts. Walang dagdag na bayad sa'yo. Hindi ito financial o tax advice.</p></article></main>'''
     (OUT / "about.html").write_text(page(f"About | {SITE}", "Tungkol sa VA Pinoy Life.", about, 0, "about.html"), encoding="utf-8")
 
-    # sitemap + robots
     urls = ["", "about.html", "resume-template.html"] + [f"posts/{p['slug']}.html" for p in posts]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     sm += "".join(f"<url><loc>{BASE_URL}/{u}</loc></url>\n" for u in urls) + "</urlset>\n"
     (OUT / "sitemap.xml").write_text(sm, encoding="utf-8")
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
-    (OUT / "posts.json").write_text(json.dumps([{k: p[k] for k in ("title", "slug", "category", "order")} for p in posts], ensure_ascii=False, indent=1), encoding="utf-8")
+    (OUT / "posts.json").write_text(json.dumps([{k: p[k] for k in ("title", "slug", "category", "order", "prose_words", "blocks")} for p in posts], ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"built {len(posts)} posts -> {OUT}")
 
 
+def check(files=None):
+    paths = [Path(f) for f in files] if files else sorted(POSTS.glob("*.md"))
+    bad = 0
+    for f in paths:
+        p = parse(f)
+        ok = p["prose_words"] <= MAX_PROSE and p["blocks"] >= MIN_BLOCKS and "—" not in f.read_text(encoding="utf-8")
+        bad += not ok
+        print(f"{'OK  ' if ok else 'FAIL'} {f.name}: prose={p['prose_words']} (max {MAX_PROSE}), visual blocks={p['blocks']} (min {MIN_BLOCKS})")
+    print("ALL PASS" if not bad else f"{bad} FAIL")
+
+
 if __name__ == "__main__":
-    build()
+    if "--check" in sys.argv:
+        check([a for a in sys.argv[1:] if a != "--check"])
+    else:
+        build()

@@ -3,118 +3,82 @@ title: Outlook Tips at Tricks na Nakakatipid ng Oras Mo Araw-Araw
 slug: outlook-tips-at-tricks-na-nakakatipid-ng-oras
 category: Tools at skills
 order: 13
+icon: 📨
 description: Mga Outlook tips na gamit ko bilang EA, mula Quick Steps hanggang rules, para mas mabilis matapos ang email work mo.
 ---
 
-Maraming Pinoy VA ang sanay sa Gmail. Kaya pag ang client ay naka-Microsoft 365 at Outlook ang gamit, medyo nangangapa sa umpisa. Ganyan din ako noon.
+Sanay sa Gmail pero Outlook ang gamit ng client? Eto ang mga shortcut na nakakatipid ng oras.
 
-Pero nung nasanay na ako, na-realize ko na sobrang powerful pala ng Outlook, lalo na para sa EA na humahawak ng inbox at calendar ng busy na boss. Ang daming features na nakakatipid ng oras kung alam mo lang kung saan hahanapin.
+## 🖥️ Aling Outlook ang gamit mo?
 
-Eto ang mga tips na araw-araw kong ginagamit.
+:::cards
+🪟 | Classic Outlook | Desktop, pinaka-kumpleto
+✨ | New Outlook | Desktop, mas modern
+🌐 | Outlook on the web | Kung bawal mag-install
+📱 | Outlook mobile | Para sa quick checks
+:::
 
-## Unahin muna: alamin kung aling Outlook ang gamit mo
+:::tip
+🔗 Hindi makita ang setting? Check sa [Microsoft Support](https://support.microsoft.com/outlook).
+:::
 
-May iba't ibang version ang Outlook, at medyo magkakaiba ang itsura at features:
+## ⚡ Top time-savers
 
-| Version | Saan ginagamit | Note |
-| --- | --- | --- |
-| Classic Outlook para sa Windows | Desktop app | Pinaka-kumpleto sa features |
-| New Outlook para sa Windows | Desktop app | Mas modern, unti-unting nadadagdagan ng features |
-| Outlook on the web | Browser | Magandang option kung bawal mag-install |
-| Outlook mobile | iOS at Android | Para sa quick checks |
+:::cards
+⚡ | Quick Steps | Ilang actions sa isang click
+📥 | Rules | Auto-sort ng newsletters at notifications
+🏷️ | Categories | Kulay para sa email at calendar
+✉️ | Templates | My Templates o Quick Parts
+🕐 | Schedule Send | Darating sa umaga ng recipient
+🚩 | Follow up flags | May reminder date
+:::
 
-Dahil nagbabago ang features sa bawat update, laging i-check ang [official Microsoft Support site](https://support.microsoft.com/outlook) kung hindi mo makita ang isang setting.
+## 🎨 Color categories
 
-## Tip 1: Quick Steps
+:::check
+🔴 Pula: Urgent, kailangan ng boss
+🟡 Dilaw: Waiting for reply
+🟢 Berde: For my action
+🔵 Asul: FYI lang
+:::
 
-Ang **Quick Steps** ay parang shortcut na gumagawa ng ilang actions sa isang click. Halimbawa:
+:::tip
+👀 Naka-on ang Focused Inbox? I-check ang "Other" tab ilang beses sa isang araw.
+:::
 
-- I-move ang email sa folder na "Done" at markahan as read
-- I-forward sa accounting team na may naka-set nang message
-- Gumawa ng meeting invite mula sa email
+## 🔐 Delegate access, hindi password
 
-Kung paulit-ulit ang ginagawa mo sa isang klase ng email, gawan mo ng Quick Step. Available ito sa classic Outlook, at may version din sa new Outlook at web.
+:::vs
+❌ Password sharing | ✅ Delegate access
+Walang record kung sino gumawa | May record ng bawat action
+Delikado sa security | Setup ng IT admin o boss
+Mukhang ikaw ang boss | Malinaw na "on behalf of"
+:::
 
-## Tip 2: Rules para sa automatic sorting
+## ⌨️ Shortcuts sa Windows desktop
 
-Ang **Rules** ay ang katumbas ng filters sa Gmail. Ilang rules na gamit ko:
+:::stats
+Ctrl + R | Reply
+Ctrl + Shift + R | Reply All
+Ctrl + F | Forward, hindi search!
+Ctrl + Shift + M | Bagong email
+Ctrl + Shift + A | Bagong appointment
+Ctrl + 1 or 2 | Mail o Calendar
+:::
 
-1. Lahat ng newsletters, diretso sa folder na "Read Later"
-2. Lahat ng email galing sa top clients ng boss, may flag o category
-3. Lahat ng automated notifications, diretso sa "Notifications" folder
+## 🔁 Daily Outlook routine
 
-Ang resulta, ang natitira sa inbox ay yung mga email na talagang kailangang basahin o sagutin.
+:::steps
+🔴 | I-scan ang red categories
+⏱️ | Sagutin ang 2-minute replies
+🚩 | I-flag ang para sa boss
+📅 | I-check ang conflicts sa susunod na 48 oras
+🧹 | Linisin gamit ang Quick Steps
+🕐 | I-schedule send ang drafts bago mag-out
+:::
 
-## Tip 3: Categories na may kulay
+## 👉 Next step
 
-Pwede kang gumawa ng **color categories** gaya ng:
-
-- Pula: Urgent, kailangan ng boss
-- Dilaw: Waiting for reply
-- Berde: For my action
-- Asul: FYI lang
-
-Ang ganda nito, pwede ring gamitin ang categories sa Calendar. Kaya consistent ang color system mo sa email at meetings.
-
-## Tip 4: Focused Inbox
-
-Ang **Focused Inbox** ay naghihiwalay ng important emails sa "Other." Para sa ibang tao, sobrang helpful. Pero para sa EA, minsan delikado kasi may importanteng email na napupunta sa Other.
-
-Ang ginagawa ko: kinakausap ko muna ang boss kung gusto niyang naka-on ito. Kung naka-on, chine-check ko ang Other tab nang ilang beses sa isang araw.
-
-## Tip 5: Templates at signatures
-
-Sa Outlook, may **My Templates** feature sa ilang versions, at may **Quick Parts** naman sa classic desktop. Dito ko sine-save ang mga common na replies:
-
-- "Received, will get back to you by..."
-- Meeting confirmation
-- Polite decline sa meeting request
-
-Gumawa rin ng hiwalay na **signature** para sa sarili mo bilang EA, para malinaw sa recipient na assistant ang sumasagot.
-
-## Tip 6: Delegate access, hindi password sharing
-
-Kung hahawakan mo ang inbox at calendar ng boss, ang tamang setup ay **delegate access** o **shared mailbox permissions**. Kadalasan, ang IT admin o ang boss mismo ang mag-se-setup nito.
-
-Sa delegate access, pwede kang:
-
-- Magbasa at sumagot ng emails para sa kanya
-- Mag-accept o mag-decline ng meetings
-- Mag-send "on behalf of" ng boss
-
-Mas secure ito kaysa pag-share ng password, at may record kung sino ang gumawa ng ano.
-
-## Tip 7: Keyboard shortcuts
-
-Eto ang mga shortcuts na pinaka-madalas kong gamitin sa Outlook para sa Windows:
-
-| Shortcut | Ginagawa |
-| --- | --- |
-| Ctrl + R | Reply |
-| Ctrl + Shift + R | Reply All |
-| Ctrl + F | Forward |
-| Ctrl + Shift + M | Bagong email |
-| Ctrl + Shift + A | Bagong appointment |
-| Ctrl + 1 | Pumunta sa Mail |
-| Ctrl + 2 | Pumunta sa Calendar |
-
-Note: Sa Mac at sa web version, may pagkakaiba ang shortcuts. Ang Ctrl + F ay forward sa desktop Outlook, hindi search, kaya mag-ingat.
-
-## Tip 8: Schedule send at reminders
-
-Dahil nasa Pilipinas tayo at nasa ibang time zone ang client, gamitin ang **Delay Delivery** o **Schedule Send**. Isusulat mo ngayon, pero darating sa inbox ng recipient sa umaga nila. Mas professional tingnan.
-
-Gamitin din ang **Follow up flags** na may reminder date para hindi mo makalimutan ang mga email na naghihintay ng reply.
-
-## Ang daily Outlook routine ko
-
-1. Buksan ang inbox at i-scan ang mga red category.
-2. Sagutin ang mga kaya kong sagutin sa loob ng 2 minuto.
-3. I-flag ang kailangang sagot ng boss at ilagay sa daily summary niya.
-4. I-check ang Calendar para sa conflicts sa susunod na 48 oras.
-5. Linisin ang inbox gamit ang Quick Steps.
-6. Bago mag-out, i-schedule send ang mga drafts para sa umaga nila.
-
-## Next step
-
-Gumawa ng **isang Quick Step o isang Rule** ngayong araw para sa email task na paulit-ulit mong ginagawa.
+:::tip
+🎯 Gumawa ng isang Quick Step o Rule ngayon para sa paulit-ulit mong email task.
+:::

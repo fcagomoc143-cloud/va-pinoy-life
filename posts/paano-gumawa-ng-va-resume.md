@@ -3,115 +3,77 @@ title: Paano Gumawa ng VA Resume na Papansinin ng Client Abroad
 slug: paano-gumawa-ng-va-resume
 category: Pang-beginner
 order: 6
+icon: 📄
 description: Step-by-step guide sa paggawa ng VA resume na malinis, maikli, at pang-client abroad, plus libreng template na pwede mong gamitin.
 ---
 
-Isa sa mga pinaka-madalas na pagkakamali ng mga beginner VA: ginagamit nila ang lumang resume nila na pang-local job, tapos ipapadala sa client sa US o Canada. Hindi ito tatalab.
+Hindi tatalab ang lumang local resume sa client abroad. Gamitin ang [libreng resume template](../resume-template.html) habang binabasa ito.
 
-Iba ang hinahanap ng foreign clients. Kaya sa post na ito, tuturuan kita kung paano gumawa ng resume na pang-VA talaga.
+## 🔄 Local resume vs VA resume
 
-At good news: may **libreng resume template** dito sa blog na pwede mong gamitin. Makikita mo ito sa [/resume-template.html](/resume-template.html). Pero basahin mo muna ang guide na ito para alam mo kung paano ito pupunan nang tama.
+:::vs
+🗃️ Local (luma) | ✨ VA (bago)
+Birthday, edad, height, religion | Walang personal details na hindi related
+Formal na 2x2 photo | Optional o simpleng headshot
+Mahabang generic na "Objective" | Maikling "Summary" pang-VA
+Listahan ng duties | Results at tools na ginamit
+3 pahina pataas | 1 hanggang 2 pahina lang
+:::
 
-## Local Resume vs VA Resume
+## 🧱 Ang tamang structure
 
-| Local Resume (Luma) | VA Resume (Bago) |
-|---|---|
-| May birthday, edad, height, weight, religion | Walang personal details na hindi related sa trabaho |
-| May 2x2 photo na naka-formal | Optional ang photo, o simpleng professional headshot |
-| Mahabang "Objective" na generic | Maikling "Summary" na specific sa VA work |
-| Listahan ng duties | Listahan ng results at tools na ginamit |
-| Tatlo o higit pang pahina | Isa hanggang dalawang pahina lang |
+:::steps
+🪪 | Header: pangalan, email, LinkedIn, portfolio
+💬 | Professional Summary: 2 hanggang 3 pangungusap
+🛠️ | Skills
+🧰 | Tools
+💼 | Work Experience, kahit hindi VA
+🎓 | Education at Training, kasama online courses
+🏠 | Work Setup: internet, backup, equipment
+:::
 
-Sa maraming bansa sa abroad, hindi na normal ang paglagay ng edad, civil status, o religion sa resume. Mas professional kung tanggalin mo ang mga ito.
+:::tip
+🏠 Madalas kinakalimutan ang Work Setup, pero malaking bagay ito sa clients.
+:::
 
-## Ang Tamang Structure ng VA Resume
+## ✍️ Summary at results
 
-Sundin mo ang ayos na ito:
+:::vs
+😐 Mahina | 💪 Mas maganda
+"Hardworking and dedicated person..." | "Detail-oriented VA, email and calendar, Google Workspace"
+"Answered customer emails." | "Responded to around 50 customer emails daily"
+"Handled schedules." | "Managed a 10-person team calendar, fewer double bookings"
+:::
 
-1. **Header.** Pangalan, email, phone (optional), LinkedIn link, at portfolio link.
-2. **Professional Summary.** Dalawa hanggang tatlong pangungusap tungkol sa kung sino ka at ano ang kaya mong gawin.
-3. **Skills.** Listahan ng mga specific na kakayahan.
-4. **Tools.** Mga software na alam mong gamitin.
-5. **Work Experience.** Kahit hindi VA, basta may transferable skills.
-6. **Education at Training.** Kasama ang online courses.
-7. **Work Setup.** Internet speed, backup, at equipment.
+:::tip
+🙏 Huwag mag-imbento ng numbers. Gumamit ng "around" kung hindi sigurado.
+:::
 
-Yung number 7, madalas kinakalimutan. Pero sa VA world, malaking bagay ito sa clients.
+## 🧰 Walang experience? Ilagay ito
 
-## Paano Sumulat ng Professional Summary
+:::cards
+🏪 | Previous jobs | Retail, BPO, o opisina
+💸 | Raket | Online selling, tutoring, events
+🤝 | Volunteer | Org experience
+🗂️ | Projects | Sample works mula sa portfolio
+💻 | Tools | Google Workspace, Slack, Zoom, Trello, Asana, Canva
+:::
 
-Ito ang unang babasahin ng client. Kaya gawin mong malinaw at specific.
+## 🎨 Formatting at final checklist
 
-**Mahinang halimbawa:**
-"I am a hardworking and dedicated person looking for an opportunity to grow."
+:::check
+Malinis na font: Arial, Calibri, o Inter
+Naka-PDF, filename tulad ng Juan-Dela-Cruz-VA-Resume.pdf
+Walang typo, ipabasa o gumamit ng grammar checker
+Gumagana ang LinkedIn at portfolio links
+1 hanggang 2 pahina lang
+Naka-customize ang summary sa job
+Tools na talagang alam mo lang
+Tinanggal ang edad, religion, at iba pang personal details
+:::
 
-**Mas magandang halimbawa:**
-"Detail-oriented Virtual Assistant with experience in email management, calendar scheduling, and data entry. Skilled in Google Workspace and Canva. Reliable, fast learner, and comfortable working US and Canada hours."
+## 👉 Next step
 
-Nakita mo ang difference? Yung pangalawa, alam agad ng client kung ano ang makukuha niya sa'yo.
-
-## Gawing Results ang Duties
-
-Imbes na ilista lang ang ginawa mo, ipakita ang **resulta.** Kahit maliit.
-
-- Mahina: "Answered customer emails."
-- Mas maganda: "Responded to around 50 customer emails daily while keeping replies clear and polite."
-
-- Mahina: "Handled schedules."
-- Mas maganda: "Managed the weekly schedule of a 10-person team using Google Calendar, reducing double bookings."
-
-Huwag mag-imbento ng numbers. Kung hindi mo sigurado, gumamit ng "around" o "approximately." Ang honesty ay mas mahalaga.
-
-## Paano Kung Wala Pa Talaga Akong Experience?
-
-Okay lang. Ilagay mo ang mga ito:
-
-- **Previous jobs** kahit sa retail, BPO, o opisina. I-highlight ang transferable skills.
-- **Freelance o raket** tulad ng online selling, tutoring, o pag-aayos ng event.
-- **Volunteer work** o org experience.
-- **Sample projects** mula sa portfolio mo. Pwede mong ilagay ito sa "Projects" section.
-
-## Ang Tools Section
-
-Malaking tulong ito dahil madalas nag-se-search ang clients ng specific keywords. Halimbawa:
-
-| Category | Tools |
-|---|---|
-| Productivity | Google Workspace, Microsoft Office |
-| Communication | Slack, Zoom, Google Meet |
-| Project Management | Trello, Asana |
-| Design | Canva |
-| Others | Calendly, Dropbox |
-
-Ilagay lang ang **talagang alam mong gamitin.** Kung tatanungin ka sa interview at hindi mo masagot, sira ang tiwala.
-
-## Ang Work Setup Section
-
-Simple lang ito pero malakas ang dating:
-
-- Laptop: (specs, halimbawa 8GB RAM, SSD)
-- Internet: (speed mula sa speed test mo)
-- Backup: (pocket WiFi, UPS)
-- Headset: noise-cancelling
-
-Ipinapakita nito na seryoso ka at handa kang magtrabaho agad.
-
-## Formatting Tips
-
-- **Gumamit ng malinis na font** tulad ng Arial, Calibri, o Inter.
-- **I-save bilang PDF** para hindi magulo ang format sa ibang computer.
-- **Pangalanan nang maayos ang file.** Halimbawa: "Juan-Dela-Cruz-VA-Resume.pdf," hindi "resume final final 2.pdf."
-- **Iwasan ang sobrang kulay at graphics.** Malinis at simple ang panalo.
-
-## Final Checklist Bago Ipadala
-
-1. Walang typo o grammar error. Ipabasa sa kaibigan o gumamit ng grammar checker.
-2. Gumagana ang lahat ng links (LinkedIn at portfolio).
-3. Isa hanggang dalawang pahina lang.
-4. Naka-PDF at maayos ang filename.
-5. Naka-customize ang summary para sa specific na job.
-6. Tinanggal ang edad, religion, at iba pang hindi kailangang personal details.
-
-## Next step
-
-Buksan ang libreng template sa [/resume-template.html](/resume-template.html), at ngayong araw, sulatin ang bagong Professional Summary mo gamit ang mas magandang halimbawa sa taas bilang gabay.
+:::tip
+📝 Buksan ang [libreng resume template](../resume-template.html) at isulat ang bagong Professional Summary mo ngayon.
+:::

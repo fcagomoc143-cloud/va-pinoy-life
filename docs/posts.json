@@ -3,180 +3,240 @@
   "title": "Ano ba Talaga ang Virtual Assistant? Explained Para sa mga Bago",
   "slug": "ano-ang-virtual-assistant",
   "category": "Pang-beginner",
-  "order": 1
+  "order": 1,
+  "prose_words": 38,
+  "blocks": 9
  },
  {
   "title": "Paano Maging VA Kahit Walang Experience? Oo, Kaya Mo Yan",
   "slug": "paano-maging-va-kahit-walang-experience",
   "category": "Pang-beginner",
-  "order": 2
+  "order": 2,
+  "prose_words": 37,
+  "blocks": 9
  },
  {
   "title": "VA vs EA: Ano ang Pagkakaiba at Alin ang Para sa'yo?",
   "slug": "va-vs-ea-pagkakaiba",
   "category": "Pang-beginner",
-  "order": 3
+  "order": 3,
+  "prose_words": 37,
+  "blocks": 8
  },
  {
   "title": "Mga Kailangang Equipment at Internet Setup ng Isang VA",
   "slug": "va-equipment-at-internet-setup",
   "category": "Pang-beginner",
-  "order": 4
+  "order": 4,
+  "prose_words": 33,
+  "blocks": 8
  },
  {
   "title": "Saan Maghahanap ng VA Job? Mga Legit Sites na Subok Na",
   "slug": "saan-maghahanap-ng-va-job",
   "category": "Pang-beginner",
-  "order": 5
+  "order": 5,
+  "prose_words": 34,
+  "blocks": 7
  },
  {
   "title": "Paano Gumawa ng VA Resume na Papansinin ng Client Abroad",
   "slug": "paano-gumawa-ng-va-resume",
   "category": "Pang-beginner",
-  "order": 6
+  "order": 6,
+  "prose_words": 41,
+  "blocks": 8
  },
  {
   "title": "Mga Karaniwang Tanong sa VA Interview at Paano Sumagot Nang Kumpiyansa",
   "slug": "va-interview-tanong-at-sagot",
   "category": "Pang-beginner",
-  "order": 7
+  "order": 7,
+  "prose_words": 31,
+  "blocks": 7
  },
  {
   "title": "Unang Linggo Mo sa VA Job: Ano ang Aasahan at Paano Mag-survive",
   "slug": "unang-linggo-sa-va-job",
   "category": "Pang-beginner",
-  "order": 8
+  "order": 8,
+  "prose_words": 34,
+  "blocks": 8
  },
  {
   "title": "Paano Makipag-usap sa Boss na Taga-Abroad: Culture at Email Tone",
   "slug": "paano-makipag-usap-sa-boss-abroad",
   "category": "Pang-beginner",
-  "order": 9
+  "order": 9,
+  "prose_words": 37,
+  "blocks": 9
  },
  {
   "title": "Time Zone Survival Guide Para sa Night Shift VA",
   "slug": "time-zone-survival-guide-night-shift-va",
   "category": "Pang-beginner",
-  "order": 10
+  "order": 10,
+  "prose_words": 42,
+  "blocks": 9
  },
  {
   "title": "Ang Toolkit Ko Araw-Araw Bilang EA ng CEO sa Canada",
   "slug": "mga-tools-na-ginagamit-ko-araw-araw-bilang-ea",
   "category": "Tools at skills",
-  "order": 11
+  "order": 11,
+  "prose_words": 49,
+  "blocks": 10
  },
  {
   "title": "Google Workspace Basics na Dapat Alam ng Bawat VA",
   "slug": "google-workspace-basics-para-sa-va",
   "category": "Tools at skills",
-  "order": 12
+  "order": 12,
+  "prose_words": 36,
+  "blocks": 10
  },
  {
   "title": "Outlook Tips at Tricks na Nakakatipid ng Oras Mo Araw-Araw",
   "slug": "outlook-tips-at-tricks-na-nakakatipid-ng-oras",
   "category": "Tools at skills",
-  "order": 13
+  "order": 13,
+  "prose_words": 40,
+  "blocks": 9
  },
  {
   "title": "Calendar Management Para sa Busy na Boss, Paano Hindi Malulunod",
   "slug": "calendar-management-para-sa-busy-na-boss",
   "category": "Tools at skills",
-  "order": 14
+  "order": 14,
+  "prose_words": 41,
+  "blocks": 9
  },
  {
   "title": "Inbox Zero Method Para sa VA, Paano Ko Nililinis ang 200 Emails Araw-Araw",
   "slug": "inbox-zero-method-para-sa-va",
   "category": "Tools at skills",
-  "order": 15
+  "order": 15,
+  "prose_words": 35,
+  "blocks": 8
  },
  {
   "title": "Paano Gamitin ang AI (ChatGPT, Claude, Gemini) Para Bumilis sa VA Work, Nang Safe",
   "slug": "paano-gamitin-ang-ai-para-bumilis-sa-va-work",
   "category": "Tools at skills",
-  "order": 16
+  "order": 16,
+  "prose_words": 38,
+  "blocks": 11
  },
  {
   "title": "Canva Para sa VA, Mga Madalas Ipagawa ng Client at Paano Gawin Nang Mabilis",
   "slug": "canva-para-sa-va-mga-madalas-ipagawa",
   "category": "Tools at skills",
-  "order": 17
+  "order": 17,
+  "prose_words": 42,
+  "blocks": 10
  },
  {
   "title": "Paano Gumawa ng SOP na Talagang Nagagamit, Hindi Lang Nakatambak",
   "slug": "paano-gumawa-ng-sop",
   "category": "Tools at skills",
-  "order": 18
+  "order": 18,
+  "prose_words": 44,
+  "blocks": 10
  },
  {
   "title": "Notion vs Trello vs Asana, Alin ang Bagay sa Task Management Mo?",
   "slug": "notion-vs-trello-vs-asana-para-sa-task-management",
   "category": "Tools at skills",
-  "order": 19
+  "order": 19,
+  "prose_words": 31,
+  "blocks": 10
  },
  {
   "title": "Travel Booking at Itinerary Para sa Boss, Ang Sistema Ko Para Walang Aberya",
   "slug": "travel-booking-at-itinerary-para-sa-boss",
   "category": "Tools at skills",
-  "order": 20
+  "order": 20,
+  "prose_words": 32,
+  "blocks": 10
  },
  {
   "title": "Magkano Dapat ang Rate Mo Bilang VA? Usapang Totoo Tungkol sa Presyo",
   "slug": "magkano-dapat-rate-mo-bilang-va",
   "category": "Pera at career",
-  "order": 21
+  "order": 21,
+  "prose_words": 45,
+  "blocks": 9
  },
  {
   "title": "Paano Humingi ng Raise sa Foreign Client Nang Hindi Nanginginig",
   "slug": "paano-humingi-ng-raise-sa-foreign-client",
   "category": "Pera at career",
-  "order": 22
+  "order": 22,
+  "prose_words": 41,
+  "blocks": 8
  },
  {
   "title": "Wise, PayPal, Payoneer, o Bank? Paano Tumanggap ng Bayad Mula sa Client Abroad",
   "slug": "paano-tumanggap-ng-bayad-wise-paypal-payoneer",
   "category": "Pera at career",
-  "order": 23
+  "order": 23,
+  "prose_words": 38,
+  "blocks": 9
  },
  {
   "title": "Tax Para sa Freelancer sa Pilipinas: Basic Guide Para sa Pinoy VA",
   "slug": "tax-para-sa-freelancer-sa-pilipinas",
   "category": "Pera at career",
-  "order": 24
+  "order": 24,
+  "prose_words": 45,
+  "blocks": 8
  },
  {
   "title": "Mula Part-Time Hanggang Full-Time VA: Paano Gawin ang Lipat Nang Hindi Nagugutom",
   "slug": "mula-part-time-hanggang-full-time-va",
   "category": "Pera at career",
-  "order": 25
+  "order": 25,
+  "prose_words": 35,
+  "blocks": 7
  },
  {
   "title": "Paano Makahanap ng Long-Term Client na Hindi Ka Iiwan After Two Weeks",
   "slug": "paano-makahanap-ng-long-term-client",
   "category": "Pera at career",
-  "order": 26
+  "order": 26,
+  "prose_words": 37,
+  "blocks": 7
  },
  {
   "title": "Ingat, Kabayan! Paano Iwasan ang Scam na VA Job Posts",
   "slug": "paano-iwasan-ang-scam-na-va-job-posts",
   "category": "Pera at career",
-  "order": 27
+  "order": 27,
+  "prose_words": 34,
+  "blocks": 7
  },
  {
   "title": "Generalist Ka Pa Rin Ba? Paano Mag-specialize Bilang VA at Tumaas ang Kita",
   "slug": "paano-mag-specialize-at-tumaas-ang-kita",
   "category": "Pera at career",
-  "order": 28
+  "order": 28,
+  "prose_words": 41,
+  "blocks": 7
  },
  {
   "title": "Isang Araw sa Buhay Ko Bilang EA ng CEO sa Canada",
   "slug": "isang-araw-sa-buhay-ko-bilang-ea-ng-ceo-sa-canada",
   "category": "Pera at career",
-  "order": 29
+  "order": 29,
+  "prose_words": 44,
+  "blocks": 8
  },
  {
   "title": "Pagod Ka Na Ba? Paano Iwasan ang Burnout Bilang VA",
   "slug": "paano-iwasan-ang-burnout-bilang-va",
   "category": "Pera at career",
-  "order": 30
+  "order": 30,
+  "prose_words": 37,
+  "blocks": 8
  }
 ]
