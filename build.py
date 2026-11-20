@@ -187,11 +187,38 @@ def _page(title, desc, body, depth=0, canonical=""):
 </body></html>'''
 
 
+BLURB = {"Pang-beginner": "Magsimula dito kung bago ka sa VA work.",
+         "Tools at skills": "Mga app at skills na hinahanap ng clients.",
+         "Pera at career": "Rate, bayad, tax at paglago ng career."}
+ART_KIND = {"Pang-beginner": "start", "Tools at skills": "tools", "Pera at career": "money"}
+
+
+def thumb(kind, seed=0):
+    """Original (first-version) thumbnail art, recolored to the SigComm palette."""
+    s = seed % 7
+    N, O, L, W = "#262359", "#F7941D", "#3B3785", "#FFFFFF"
+    if kind == "start":
+        return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="200" fill="{N}"/>
+<circle cx="{230 - s*6}" cy="70" r="{38 + s*2}" fill="{O}"/>
+<path d="M0 160 Q80 {110 + s*4} 160 150 T320 140 V200 H0Z" fill="{L}"/>
+<rect x="{48 + s*4}" y="96" width="92" height="60" rx="6" fill="{W}"/><rect x="58" y="106" width="72" height="38" rx="3" fill="{N}"/>
+<rect x="34" y="156" width="120" height="8" rx="4" fill="{W}"/></svg>'''
+    if kind == "tools":
+        return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="200" fill="{O}"/>
+<rect x="{30 + s*5}" y="34" width="120" height="132" rx="10" fill="{N}"/>
+<rect x="46" y="54" width="{70 + s*3}" height="10" rx="5" fill="{O}"/><rect x="46" y="76" width="88" height="10" rx="5" fill="{W}"/><rect x="46" y="98" width="60" height="10" rx="5" fill="{W}"/>
+<circle cx="{232 - s*4}" cy="100" r="54" fill="{N}"/><path d="M{208 - s*4} 100 l16 16 l30 -34" stroke="{W}" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'''
+    return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="200" fill="{L}"/>
+<rect x="40" y="{120 - s*3}" width="40" height="{60 + s*3}" fill="{O}"/><rect x="100" y="{90 - s*3}" width="40" height="{90 + s*3}" fill="{O}"/><rect x="160" y="{60 - s*3}" width="40" height="{120 + s*3}" fill="{O}"/>
+<circle cx="258" cy="{70 + s*4}" r="34" fill="{W}"/><text x="258" y="{82 + s*4}" font-size="34" font-weight="800" text-anchor="middle" fill="{N}" font-family="Bricolage Grotesque, sans-serif">₱</text>
+<rect x="24" y="180" width="272" height="6" fill="{N}"/></svg>'''
+
+
 def tile(p, depth=0, big=False):
-    """Text card: anime art lives only in the hero at the top of each page."""
-    c = CATS[p["category"]]
-    return f'''<a class="card-link" href="{'../'*depth}posts/{p['slug']}.html" style="--cat:{c['dot'] if c['bg'] == '#F1F0F7' else c['bg']}">
-<span class="icon">{icon(p['icon'])}</span><h3>{E(p['title'])}</h3><span class="meta">{p['category']} · {p['mins']} min</span></a>'''
+    """Original list row: small art + title + description + meta."""
+    return f'''<a class="item" href="{'../'*depth}posts/{p['slug']}.html">
+<figure>{thumb(ART_KIND[p['category']], p['order'])}</figure>
+<div><h3>{E(p['title'])}</h3><p>{E(p.get('description', ''))}</p><p class="small">{p['category']} · {p['mins']} min basa</p></div></a>'''
 
 
 def build():
@@ -222,7 +249,7 @@ def build():
 <div><p class="small"><a href="../index.html#{c['slug']}">{c['icon']} {p['category']}</a> · ⏱️ {p['mins']} min</p><h1>{E(p['title'])}</h1></div></section>
 <article class="prose">{p['html']}</article>
 <aside class="cta"><span class="big">📄</span><div><h2>Libreng VA resume</h2><a class="btn" href="../resume-template.html">Kunin ngayon</a></div></aside>
-<section class="related"><h2>Basahin din</h2><div class="tiles">{''.join(tile(q, 1) for q in related)}</div></section>
+<section class="related"><h2>Basahin din</h2><div class="list">{''.join(tile(q, 1) for q in related)}</div></section>
 {pn}</main>'''
         (OUT / "posts" / f"{p['slug']}.html").write_text(
             page(f"{p['title']} | {SITE}", p.get("description", ""), body, 1, f"posts/{p['slug']}.html"), encoding="utf-8")
@@ -230,8 +257,8 @@ def build():
     sections = ""
     for name, c in CATS.items():
         items = [p for p in posts if p["category"] == name]
-        sections += f'''<section class="cat" id="{c['slug']}"><h2><span class="ic">{icon(c['icon'])}</span>{name}</h2>
-<div class="tiles">{''.join(tile(p) for p in items)}</div></section>'''
+        sections += f'''<section class="cat" id="{c['slug']}"><div class="cat-head"><h2>{name}</h2><p>{BLURB[name]}</p></div>
+<div class="list">{''.join(tile(p) for p in items)}</div></section>'''
     body = f'''<main>
 <section class="mast"><div class="mast-text"><h1>Maging VA na may <em>totoong</em> kita.</h1>
 <ul class="v-steps home"><li><span class="ic">🌱</span><b>Matuto</b></li><li><span class="ic">🧰</span><b>Mag-skill up</b></li><li><span class="ic">📄</span><b>Mag-apply</b></li><li><span class="ic">💸</span><b>Kumita</b></li></ul></div>{('<figure class="mast-art">' + pic('home', 0, 'Pinoy VA na nagtatrabaho sa gabi', eager=True) + '</figure>') if pic('home') else ''}</section>

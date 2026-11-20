@@ -180,3 +180,20 @@ h2 .ico-inline,h1 .ico-inline{color:var(--pink)}
 .big .ico-inline{width:55%;height:55%;margin:0}
 .pn .ic{font-size:1.2rem;color:var(--pink)}
 .post-hero .small .ico-inline{margin-right:.25em}
+
+/* restored original list design (category sections + related) */
+.cat{display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:clamp(20px,4vw,56px);padding:64px 0 16px;border-bottom:1px solid var(--line)}
+.cat-head{position:sticky;top:76px;align-self:start}
+.cat-head h2{font:800 var(--text-heading)/1.1 var(--display);letter-spacing:-0.03em;color:var(--ink);margin:0 0 8px;display:block}
+.cat-head p{color:var(--muted);margin:0}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 32px}
+.item{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;text-decoration:none;border-top:1px solid var(--line)}
+.item figure{margin:0;border-radius:10px;overflow:hidden;aspect-ratio:8/5;transition:transform 200ms var(--ease)}
+.item h3{font:600 var(--text-body)/1.3 var(--body);color:var(--ink);margin:0 0 4px}
+.item p{margin:0 0 6px;color:var(--muted);font-size:var(--text-sm);line-height:1.5}
+.item p.small{margin:0}
+.item:hover figure{transform:scale(1.04)}
+.item:hover h3{text-decoration:underline}
+.related .list{margin-top:8px}
+@media (max-width:900px){.cat{grid-template-columns:1fr;padding-top:48px}.cat-head{position:static}.list{grid-template-columns:1fr}}
+@media (max-width:640px){.item{grid-template-columns:96px 1fr}}
