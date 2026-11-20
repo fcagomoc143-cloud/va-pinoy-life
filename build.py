@@ -27,7 +27,7 @@ POSTS = ROOT / "posts"
 STATIC = ROOT / "static"
 OUT = ROOT / "docs"
 SITE = "VA Pinoy Life"
-BASE_URL = "https://fcagomoc143-cloud.github.io/va-pinoy-life"
+BASE_URL = "https://vapinoylife.netlify.app"
 MAX_PROSE = 220
 MIN_BLOCKS = 5
 
@@ -37,6 +37,28 @@ CATS = {
     "Pera at career": {"slug": "pera", "short": "Pera", "icon": "💸", "bg": "#F7941D", "fg": "#262359", "blob": "#FB8C00", "dot": "#262359"},
 }
 E = html.escape
+IMG_SRC = STATIC / "img"
+
+
+def optimize_images():
+    """PNG from gen_images.py -> 1400px JPG for the web (PNG originals stay out of docs)."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return
+    for png in IMG_SRC.glob("*.png"):
+        jpg = png.with_suffix(".jpg")
+        if not jpg.exists() or jpg.stat().st_mtime < png.stat().st_mtime:
+            im = Image.open(png).convert("RGB")
+            im.thumbnail((1400, 1400))
+            im.save(jpg, "JPEG", quality=82, optimize=True, progressive=True)
+
+
+def pic(key, depth=0, alt="", eager=False):
+    if (IMG_SRC / f"{key}.jpg").exists():
+        load = 'fetchpriority="high"' if eager else 'loading="lazy"'
+        return f'<img src="{'../' * depth}img/{key}.jpg" alt="{E(alt)}" {load} decoding="async">'
+    return ""
 
 
 def art(cat, icon, seed=0, label=""):
@@ -154,23 +176,27 @@ def page(title, desc, body, depth=0, canonical=""):
 <nav>{nav}<a href="{p}resume-template.html">📄 Free resume</a><a href="{p}about.html">👋 About</a></nav></header>
 {body}
 <footer class="foot"><a class="brand" href="{p}index.html">VA <span>Pinoy</span> Life</a>
-<p class="small">🇵🇭 Gawa ng Pinoy EA · Ang ilang links ay affiliate · Hindi financial o tax advice</p></footer>
+<p class="small">Gawa ng Pinoy EA · Ang ilang links ay affiliate · Hindi financial o tax advice</p></footer>
 <script>const h=document.querySelector('.top');addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>8),{{passive:true}});</script>
 </body></html>'''
 
 
 def tile(p, depth=0, big=False):
     return f'''<a class="{'lead' if big else 'tile'}" href="{'../'*depth}posts/{p['slug']}.html">
-<figure>{art(p['category'], p['icon'], p['order'], p['title'])}</figure><h3>{E(p['title'])}</h3></a>'''
+<figure>{pic(p['slug'], depth, p['title'], eager=big) or art(p['category'], p['icon'], p['order'], p['title'])}</figure><h3>{E(p['title'])}</h3></a>'''
 
 
 def build():
+    optimize_images()
     OUT.mkdir(exist_ok=True)
     for f in OUT.iterdir():
         shutil.rmtree(f) if f.is_dir() else f.unlink()
     (OUT / "posts").mkdir(parents=True)
     for f in STATIC.iterdir():
-        shutil.copy(f, OUT / f.name)
+        if f.is_dir():
+            shutil.copytree(f, OUT / f.name, ignore=shutil.ignore_patterns("*.png", "test-*"))
+        else:
+            shutil.copy(f, OUT / f.name)
     posts = sorted((parse(f) for f in POSTS.glob("*.md")), key=lambda x: x["order"])
 
     for i, p in enumerate(posts):
@@ -184,7 +210,7 @@ def build():
         related = [q for q in posts if q["category"] == p["category"] and q is not p][:3]
         body = f'''<main class="post">
 <section class="post-hero" style="--hbg:{c['bg']};--hfg:{c['fg']}">
-<figure>{art(p['category'], p['icon'], p['order'], p['title'])}</figure>
+<figure>{pic(p['slug'], 1, p['title'], eager=True) or art(p['category'], p['icon'], p['order'], p['title'])}</figure>
 <div><p class="small"><a href="../index.html#{c['slug']}">{c['icon']} {p['category']}</a> · ⏱️ {p['mins']} min</p><h1>{E(p['title'])}</h1></div></section>
 <article class="prose">{p['html']}</article>
 <aside class="cta"><span class="big">📄</span><div><h2>Libreng VA resume</h2><a class="btn" href="../resume-template.html">Kunin ngayon</a></div></aside>
@@ -199,8 +225,8 @@ def build():
         sections += f'''<section class="cat" id="{c['slug']}"><h2><span class="ic">{c['icon']}</span>{name}</h2>
 <div class="tiles">{''.join(tile(p) for p in items)}</div></section>'''
     body = f'''<main>
-<section class="mast"><h1>Maging VA na may <em>totoong</em> kita.</h1>
-<ul class="v-steps home"><li><span class="ic">🌱</span><b>Matuto</b></li><li><span class="ic">🧰</span><b>Mag-skill up</b></li><li><span class="ic">📄</span><b>Mag-apply</b></li><li><span class="ic">💸</span><b>Kumita</b></li></ul></section>
+<section class="mast"><div class="mast-text"><h1>Maging VA na may <em>totoong</em> kita.</h1>
+<ul class="v-steps home"><li><span class="ic">🌱</span><b>Matuto</b></li><li><span class="ic">🧰</span><b>Mag-skill up</b></li><li><span class="ic">📄</span><b>Mag-apply</b></li><li><span class="ic">💸</span><b>Kumita</b></li></ul></div>{('<figure class="mast-art">' + pic('home', 0, 'Pinoy VA na nagtatrabaho sa gabi', eager=True) + '</figure>') if pic('home') else ''}</section>
 <section class="hero-post">{tile(posts[0], big=True)}</section>
 {sections}
 <section class="freebie"><span class="big">📄</span><div><h2>Libreng VA resume template</h2><a class="btn" href="resume-template.html">Buksan</a></div></section>
@@ -209,7 +235,7 @@ def build():
         "Taglish na gabay para maging Virtual Assistant: paano magsimula, tools, rate, bayad at tax.", body), encoding="utf-8")
 
     about = '''<main class="post about">
-<header class="about-head"><h1>Tungkol sa VA Pinoy Life</h1>
+<header class="about-head">''' + (('<figure class="about-art">' + pic('about', 0, 'Si Mia, ang Pinoy EA sa likod ng blog', eager=True) + '</figure>') if pic('about') else '') + '''<h1>Tungkol sa VA Pinoy Life</h1>
 <p class="dek">Isinulat ng isang Pinoy Executive Assistant na remote na nagtatrabaho para sa isang CEO sa Canada.</p></header>
 <article class="prose about-body">
 <p>Hi! Ako ang nasa likod ng VA Pinoy Life. Araw-araw, mula dito sa Pilipinas, hawak ko ang inbox, calendar, travel at mga project ng isang busy na CEO sa Canada. Gising ako habang tulog ang karamihan, at ang trabaho ko ay siguraduhing maayos ang araw ng boss ko bago pa siya magising.</p>
