@@ -226,7 +226,7 @@ def build():
 <div class="tiles">{''.join(tile(p) for p in items)}</div></section>'''
     body = f'''<main>
 <section class="mast"><div class="mast-text"><h1>Maging VA na may <em>totoong</em> kita.</h1>
-<ul class="v-steps home"><li><span class="ic">🌱</span><b>Matuto</b></li><li><span class="ic">🧰</span><b>Mag-skill up</b></li><li><span class="ic">📄</span><b>Mag-apply</b></li><li><span class="ic">💸</span><b>Kumita</b></li></ul></div>{('<figure class="mast-art">' + pic('home', 0, 'Pinoy VA na nagtatrabaho sa gabi', eager=True) + '</figure>') if pic('home') else ''}</section>
+<ol class="v-steps home"><li><span class="n">1</span><b>Matuto</b></li><li><span class="n">2</span><b>Mag-skill up</b></li><li><span class="n">3</span><b>Mag-apply</b></li><li><span class="n">4</span><b>Kumita</b></li></ol></div>{('<figure class="mast-art">' + pic('home', 0, 'Pinoy VA na nagtatrabaho sa gabi', eager=True) + '</figure>') if pic('home') else ''}</section>
 <section class="hero-post">{tile(posts[0], big=True)}</section>
 {sections}
 <section class="freebie"><span class="big">📄</span><div><h2>Libreng VA resume template</h2><a class="btn" href="resume-template.html">Buksan</a></div></section>

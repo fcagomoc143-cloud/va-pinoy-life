@@ -146,3 +146,9 @@ figure img{display:block;width:100%;height:100%;object-fit:cover}
 .about-art{margin:0 0 28px;border-radius:22px;overflow:hidden;aspect-ratio:3/2}
 .tile figure,.lead figure,.post-hero figure{background:var(--surface)}
 @media (max-width:860px){.mast{grid-template-columns:1fr}.mast-art{order:-1}}
+
+/* home steps: numbers only, one row */
+.v-steps.home{flex-wrap:nowrap;gap:14px}
+.v-steps.home li{flex:1 1 0;min-width:0;padding:16px 16px 14px;gap:6px}
+.v-steps.home .n{font-size:1.6rem;color:var(--pink)}
+@media (max-width:640px){.v-steps.home{flex-wrap:wrap}.v-steps.home li{flex:1 1 40%}}
