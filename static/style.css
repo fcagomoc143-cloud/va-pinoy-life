@@ -1,7 +1,7 @@
 :root{
-  /* 60/30/10: Butter Cream main, Forest Green second, Hot Pink accent */
-  --bg:#F4EAD5; --surface:#EADDC0; --card:#FBF6EA; --ink:#1E3B2F; --text:#1E3B2F; --muted:#4B5E54;
-  --pink:#FF3EA5; --line:#DCCBA6; --on-ink:#F4EAD5;
+  /* 60/30/10 with SigComm brand: white main, navy second, orange accent */
+  --bg:#FFFFFF; --surface:#F1F0F7; --card:#F7F6FB; --ink:#262359; --text:#262359; --muted:#55527A;
+  --pink:#F7941D; --line:#DEDCEA; --on-ink:#FFFFFF;
   --display:"Bricolage Grotesque",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
   --text-heading:1.75rem; --text-body:1.0625rem; --text-sm:0.875rem;
   --ease:cubic-bezier(0.22,1,0.36,1);
@@ -53,7 +53,7 @@ main{padding:0 clamp(20px,5vw,64px)}
 /* post */
 .post{max-width:1080px;margin:0 auto}
 .post-hero{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(20px,4vw,48px);align-items:center;background:var(--hbg);color:var(--hfg);border-radius:26px;padding:clamp(16px,2.4vw,28px);margin:16px 0 8px}
-.post-hero figure{margin:0;border-radius:18px;overflow:hidden;aspect-ratio:8/5;box-shadow:0 0 0 4px rgba(244,234,213,.18)}
+.post-hero figure{margin:0;border-radius:18px;overflow:hidden;aspect-ratio:8/5;box-shadow:0 0 0 4px rgba(255,255,255,.18)}
 .post-hero h1{font:800 clamp(2.1rem,4.4vw,3.8rem)/1 var(--display);letter-spacing:-0.04em;color:inherit;margin:12px 0 0}
 .post-hero .small,.post-hero .small a{color:inherit;opacity:.85;font-weight:600;text-decoration:none}
 .prose{max-width:860px;margin:0 auto}
@@ -113,7 +113,7 @@ main{padding:0 clamp(20px,5vw,64px)}
 .pn a:hover{color:var(--pink)}
 
 .foot{background:var(--ink);color:var(--on-ink);padding:36px clamp(20px,5vw,64px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-.foot .brand{color:var(--on-ink)}.foot .small{color:#C9C2AE}
+.foot .brand{color:var(--on-ink)}.foot .small{color:#C9C7DE}
 
 @media (max-width:860px){
   .lead,.post-hero{grid-template-columns:1fr}
