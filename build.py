@@ -32,9 +32,9 @@ MAX_PROSE = 220
 MIN_BLOCKS = 5
 
 CATS = {
-    "Pang-beginner": {"slug": "beginner", "short": "Simula", "icon": "🌱", "bg": "#0F2A6B", "fg": "#FFFFFF", "blob": "#1E4BB8", "dot": "#FFC93C"},
-    "Tools at skills": {"slug": "tools", "short": "Tools", "icon": "🧰", "bg": "#FFC93C", "fg": "#0F2A6B", "blob": "#FFB000", "dot": "#D7263D"},
-    "Pera at career": {"slug": "pera", "short": "Pera", "icon": "💸", "bg": "#D7263D", "fg": "#FFFFFF", "blob": "#B81D31", "dot": "#FFC93C"},
+    "Pang-beginner": {"slug": "beginner", "short": "Simula", "icon": "🌱", "bg": "#1E3B2F", "fg": "#F4EAD5", "blob": "#2C5443", "dot": "#FF3EA5"},
+    "Tools at skills": {"slug": "tools", "short": "Tools", "icon": "🧰", "bg": "#EADDC0", "fg": "#1E3B2F", "blob": "#DDCBA3", "dot": "#1E3B2F"},
+    "Pera at career": {"slug": "pera", "short": "Pera", "icon": "💸", "bg": "#13281F", "fg": "#F4EAD5", "blob": "#1E3B2F", "dot": "#FF3EA5"},
 }
 E = html.escape
 
