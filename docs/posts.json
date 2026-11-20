@@ -30,6 +30,36 @@
   "order": 5
  },
  {
+  "title": "Paano Gumawa ng VA Resume na Papansinin ng Client Abroad",
+  "slug": "paano-gumawa-ng-va-resume",
+  "category": "Pang-beginner",
+  "order": 6
+ },
+ {
+  "title": "Mga Karaniwang Tanong sa VA Interview at Paano Sumagot Nang Kumpiyansa",
+  "slug": "va-interview-tanong-at-sagot",
+  "category": "Pang-beginner",
+  "order": 7
+ },
+ {
+  "title": "Unang Linggo Mo sa VA Job: Ano ang Aasahan at Paano Mag-survive",
+  "slug": "unang-linggo-sa-va-job",
+  "category": "Pang-beginner",
+  "order": 8
+ },
+ {
+  "title": "Paano Makipag-usap sa Boss na Taga-Abroad: Culture at Email Tone",
+  "slug": "paano-makipag-usap-sa-boss-abroad",
+  "category": "Pang-beginner",
+  "order": 9
+ },
+ {
+  "title": "Time Zone Survival Guide Para sa Night Shift VA",
+  "slug": "time-zone-survival-guide-night-shift-va",
+  "category": "Pang-beginner",
+  "order": 10
+ },
+ {
   "title": "Ang Toolkit Ko Araw-Araw Bilang EA ng CEO sa Canada",
   "slug": "mga-tools-na-ginagamit-ko-araw-araw-bilang-ea",
   "category": "Tools at skills",
@@ -58,5 +88,95 @@
   "slug": "inbox-zero-method-para-sa-va",
   "category": "Tools at skills",
   "order": 15
+ },
+ {
+  "title": "Paano Gamitin ang AI (ChatGPT, Claude, Gemini) Para Bumilis sa VA Work, Nang Safe",
+  "slug": "paano-gamitin-ang-ai-para-bumilis-sa-va-work",
+  "category": "Tools at skills",
+  "order": 16
+ },
+ {
+  "title": "Canva Para sa VA, Mga Madalas Ipagawa ng Client at Paano Gawin Nang Mabilis",
+  "slug": "canva-para-sa-va-mga-madalas-ipagawa",
+  "category": "Tools at skills",
+  "order": 17
+ },
+ {
+  "title": "Paano Gumawa ng SOP na Talagang Nagagamit, Hindi Lang Nakatambak",
+  "slug": "paano-gumawa-ng-sop",
+  "category": "Tools at skills",
+  "order": 18
+ },
+ {
+  "title": "Notion vs Trello vs Asana, Alin ang Bagay sa Task Management Mo?",
+  "slug": "notion-vs-trello-vs-asana-para-sa-task-management",
+  "category": "Tools at skills",
+  "order": 19
+ },
+ {
+  "title": "Travel Booking at Itinerary Para sa Boss, Ang Sistema Ko Para Walang Aberya",
+  "slug": "travel-booking-at-itinerary-para-sa-boss",
+  "category": "Tools at skills",
+  "order": 20
+ },
+ {
+  "title": "Magkano Dapat ang Rate Mo Bilang VA? Usapang Totoo Tungkol sa Presyo",
+  "slug": "magkano-dapat-rate-mo-bilang-va",
+  "category": "Pera at career",
+  "order": 21
+ },
+ {
+  "title": "Paano Humingi ng Raise sa Foreign Client Nang Hindi Nanginginig",
+  "slug": "paano-humingi-ng-raise-sa-foreign-client",
+  "category": "Pera at career",
+  "order": 22
+ },
+ {
+  "title": "Wise, PayPal, Payoneer, o Bank? Paano Tumanggap ng Bayad Mula sa Client Abroad",
+  "slug": "paano-tumanggap-ng-bayad-wise-paypal-payoneer",
+  "category": "Pera at career",
+  "order": 23
+ },
+ {
+  "title": "Tax Para sa Freelancer sa Pilipinas: Basic Guide Para sa Pinoy VA",
+  "slug": "tax-para-sa-freelancer-sa-pilipinas",
+  "category": "Pera at career",
+  "order": 24
+ },
+ {
+  "title": "Mula Part-Time Hanggang Full-Time VA: Paano Gawin ang Lipat Nang Hindi Nagugutom",
+  "slug": "mula-part-time-hanggang-full-time-va",
+  "category": "Pera at career",
+  "order": 25
+ },
+ {
+  "title": "Paano Makahanap ng Long-Term Client na Hindi Ka Iiwan After Two Weeks",
+  "slug": "paano-makahanap-ng-long-term-client",
+  "category": "Pera at career",
+  "order": 26
+ },
+ {
+  "title": "Ingat, Kabayan! Paano Iwasan ang Scam na VA Job Posts",
+  "slug": "paano-iwasan-ang-scam-na-va-job-posts",
+  "category": "Pera at career",
+  "order": 27
+ },
+ {
+  "title": "Generalist Ka Pa Rin Ba? Paano Mag-specialize Bilang VA at Tumaas ang Kita",
+  "slug": "paano-mag-specialize-at-tumaas-ang-kita",
+  "category": "Pera at career",
+  "order": 28
+ },
+ {
+  "title": "Isang Araw sa Buhay Ko Bilang EA ng CEO sa Canada",
+  "slug": "isang-araw-sa-buhay-ko-bilang-ea-ng-ceo-sa-canada",
+  "category": "Pera at career",
+  "order": 29
+ },
+ {
+  "title": "Pagod Ka Na Ba? Paano Iwasan ang Burnout Bilang VA",
+  "slug": "paano-iwasan-ang-burnout-bilang-va",
+  "category": "Pera at career",
+  "order": 30
  }
 ]

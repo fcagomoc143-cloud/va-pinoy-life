@@ -85,13 +85,13 @@ Pag ginamit mo ang tools sa sarili mong buhay, mas natural na sila sa'yo pag dum
 
 ## Quick checklist para sa'yo
 
-- [ ] Marunong ako sa Gmail at Google Calendar
-- [ ] Marunong ako sa Outlook basics
-- [ ] May account ako sa isang task manager at ginagamit ko
-- [ ] May password manager na ako
-- [ ] May 3 Canva samples na ako
-- [ ] Nasubukan ko na ang isang AI tool para sa drafts
-- [ ] Sanay na akong mag-track ng oras
+- Marunong ako sa Gmail at Google Calendar
+- Marunong ako sa Outlook basics
+- May account ako sa isang task manager at ginagamit ko
+- May password manager na ako
+- May 3 Canva samples na ako
+- Nasubukan ko na ang isang AI tool para sa drafts
+- Sanay na akong mag-track ng oras
 
 Kung lima o higit pa ang may check, ready ka nang mag-apply sa entry-level VA roles. Ang iba, matututunan mo habang nasa trabaho.
 

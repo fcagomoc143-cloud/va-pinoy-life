@@ -58,6 +58,7 @@ def parse(path):
     body = m.group(2)
     # drop a leading H1 duplicate of the title
     body = re.sub(r"^\s*#\s+.*\n", "", body, count=1) if body.lstrip().startswith("# ") else body
+    body = re.sub(r"^(\s*)[-*] \[[ xX]\] ", r"\1- ☐ ", body, flags=re.M)
     meta["html"] = markdown.markdown(body, extensions=["tables", "sane_lists"])
     words = len(re.findall(r"\w+", body))
     meta["mins"] = max(2, round(words / 200))

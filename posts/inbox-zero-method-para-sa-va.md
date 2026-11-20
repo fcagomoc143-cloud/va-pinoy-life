@@ -14,7 +14,7 @@ Ang system na gamit ko ay **Inbox Zero**. Pero bago ka ma-pressure, linawin ko m
 
 ## Ano ang Inbox Zero?
 
-Ang konsepto ay pinasikat ng productivity writer na si Merlin Mann. Ang idea: ang inbox mo ay hindi to-do list at hindi storage. Ito ay lugar lang kung saan dumadaan ang emails bago mo sila i-process.
+Ang konsepto ay galing sa productivity world at matagal nang ginagamit ng mga busy na professionals. Ang idea: ang inbox mo ay hindi to-do list at hindi storage. Ito ay lugar lang kung saan dumadaan ang emails bago mo sila i-process.
 
 Sa bawat email, isa lang sa limang action ang pwede mong gawin.
 
