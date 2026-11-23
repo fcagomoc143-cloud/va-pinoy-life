@@ -193,31 +193,71 @@ BLURB = {"Pang-beginner": "Magsimula dito kung bago ka sa VA work.",
 ART_KIND = {"Pang-beginner": "start", "Tools at skills": "tools", "Pera at career": "money"}
 
 
-def thumb(kind, seed=0):
-    """Original (first-version) thumbnail art, recolored to the SigComm palette."""
+THUMB_ICON = {'ano-ang-virtual-assistant': 'headset',
+    'paano-maging-va-kahit-walang-experience': 'sprout',
+    'va-vs-ea-pagkakaiba': 'scale',
+    'va-equipment-at-internet-setup': 'laptop',
+    'saan-maghahanap-ng-va-job': 'search',
+    'paano-gumawa-ng-va-resume': 'file-user',
+    'va-interview-tanong-at-sagot': 'video',
+    'unang-linggo-sa-va-job': 'calendar-check',
+    'paano-makipag-usap-sa-boss-abroad': 'messages-square',
+    'time-zone-survival-guide-night-shift-va': 'clock-alert',
+    'mga-tools-na-ginagamit-ko-araw-araw-bilang-ea': 'toolbox',
+    'google-workspace-basics-para-sa-va': 'cloud',
+    'outlook-tips-at-tricks-na-nakakatipid-ng-oras': 'mail',
+    'calendar-management-para-sa-busy-na-boss': 'calendar-days',
+    'inbox-zero-method-para-sa-va': 'inbox',
+    'paano-gamitin-ang-ai-para-bumilis-sa-va-work': 'bot',
+    'canva-para-sa-va-mga-madalas-ipagawa': 'palette',
+    'paano-gumawa-ng-sop': 'list-checks',
+    'notion-vs-trello-vs-asana-para-sa-task-management': 'kanban',
+    'travel-booking-at-itinerary-para-sa-boss': 'plane',
+    'magkano-dapat-rate-mo-bilang-va': 'calculator',
+    'paano-humingi-ng-raise-sa-foreign-client': 'trending-up',
+    'paano-tumanggap-ng-bayad-wise-paypal-payoneer': 'wallet',
+    'tax-para-sa-freelancer-sa-pilipinas': 'receipt-text',
+    'mula-part-time-hanggang-full-time-va': 'briefcase-business',
+    'paano-makahanap-ng-long-term-client': 'handshake',
+    'paano-iwasan-ang-scam-na-va-job-posts': 'shield-alert',
+    'paano-mag-specialize-at-tumaas-ang-kita': 'award',
+    'isang-araw-sa-buhay-ko-bilang-ea-ng-ceo-sa-canada': 'sun-moon',
+    'paano-iwasan-ang-burnout-bilang-va': 'battery-low'}
+
+
+def glyph(name):
+    raw = (ROOT / "icons" / f"{name}.svg").read_text(encoding="utf-8")
+    return re.search(r"<svg[^>]*>(.*)</svg>", raw, re.S).group(1)
+
+
+def thumb(kind, seed=0, slug=""):
+    """Original (first-version) thumbnail style, recolored to SigComm, with a topic glyph per post."""
     s = seed % 7
     N, O, L, W = "#262359", "#F7941D", "#3B3785", "#FFFFFF"
+    g = glyph(THUMB_ICON.get(slug, {"start": "laptop", "tools": "toolbox", "money": "wallet"}[kind]))
     if kind == "start":
         return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="200" fill="{N}"/>
-<circle cx="{230 - s*6}" cy="70" r="{38 + s*2}" fill="{O}"/>
-<path d="M0 160 Q80 {110 + s*4} 160 150 T320 140 V200 H0Z" fill="{L}"/>
-<rect x="{48 + s*4}" y="96" width="92" height="60" rx="6" fill="{W}"/><rect x="58" y="106" width="72" height="38" rx="3" fill="{N}"/>
-<rect x="34" y="156" width="120" height="8" rx="4" fill="{W}"/></svg>'''
+<circle cx="{246 - s*6}" cy="64" r="{36 + s*2}" fill="{O}"/>
+<path d="M0 162 Q80 {116 + s*4} 160 152 T320 142 V200 H0Z" fill="{L}"/>
+<rect x="{40 + s*3}" y="38" width="124" height="124" rx="26" fill="{W}"/>
+<g transform="translate({60 + s*3} 58) scale(3.5)" fill="none" stroke="{N}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">{g}</g></svg>'''
     if kind == "tools":
         return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="200" fill="{O}"/>
-<rect x="{30 + s*5}" y="34" width="120" height="132" rx="10" fill="{N}"/>
-<rect x="46" y="54" width="{70 + s*3}" height="10" rx="5" fill="{O}"/><rect x="46" y="76" width="88" height="10" rx="5" fill="{W}"/><rect x="46" y="98" width="60" height="10" rx="5" fill="{W}"/>
-<circle cx="{232 - s*4}" cy="100" r="54" fill="{N}"/><path d="M{208 - s*4} 100 l16 16 l30 -34" stroke="{W}" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'''
+<rect x="{30 + s*4}" y="30" width="140" height="140" rx="18" fill="{N}"/>
+<g transform="translate({58 + s*4} 58) scale(3.5)" fill="none" stroke="{W}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">{g}</g>
+<circle cx="{246 - s*4}" cy="100" r="46" fill="{N}" opacity=".18"/>
+<rect x="206" y="{70 + s*2}" width="{70 - s*3}" height="10" rx="5" fill="{W}"/><rect x="206" y="{92 + s*2}" width="56" height="10" rx="5" fill="{N}"/><rect x="206" y="{114 + s*2}" width="{44 + s*4}" height="10" rx="5" fill="{W}"/></svg>'''
     return f'''<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="200" fill="{L}"/>
-<rect x="40" y="{120 - s*3}" width="40" height="{60 + s*3}" fill="{O}"/><rect x="100" y="{90 - s*3}" width="40" height="{90 + s*3}" fill="{O}"/><rect x="160" y="{60 - s*3}" width="40" height="{120 + s*3}" fill="{O}"/>
-<circle cx="258" cy="{70 + s*4}" r="34" fill="{W}"/><text x="258" y="{82 + s*4}" font-size="34" font-weight="800" text-anchor="middle" fill="{N}" font-family="Bricolage Grotesque, sans-serif">₱</text>
-<rect x="24" y="180" width="272" height="6" fill="{N}"/></svg>'''
+<rect x="196" y="{122 - s*3}" width="26" height="{58 + s*3}" rx="4" fill="{O}"/><rect x="232" y="{96 - s*3}" width="26" height="{84 + s*3}" rx="4" fill="{O}"/><rect x="268" y="{68 - s*3}" width="26" height="{112 + s*3}" rx="4" fill="{O}"/>
+<circle cx="102" cy="100" r="70" fill="{W}"/>
+<g transform="translate(60 58) scale(3.5)" fill="none" stroke="{N}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">{g}</g>
+<rect x="24" y="182" width="272" height="6" rx="3" fill="{N}"/></svg>'''
 
 
 def tile(p, depth=0, big=False):
     """Original list row: small art + title + description + meta."""
     return f'''<a class="item" href="{'../'*depth}posts/{p['slug']}.html">
-<figure>{thumb(ART_KIND[p['category']], p['order'])}</figure>
+<figure>{thumb(ART_KIND[p['category']], p['order'], p['slug'])}</figure>
 <div><h3>{E(p['title'])}</h3><p>{E(p.get('description', ''))}</p><p class="small">{p['category']} · {p['mins']} min basa</p></div></a>'''
 
 
